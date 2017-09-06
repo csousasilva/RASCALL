@@ -55,8 +55,8 @@ class Molecule:
 
     def testing_function(self):
         
-        number = 123
-        stuff = number + 3
+        number = 456
+        stuff = number - 3
         
 
     def line_shapes(self):
