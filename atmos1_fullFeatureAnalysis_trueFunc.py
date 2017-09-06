@@ -103,6 +103,10 @@ class Molecule:
 
         return (pr_branch_x, pr_branch_y)
 
+    def testing_function(self):
+        number = 456
+        stuff = number - 3
+
     def average_points(self):
         points = []
 
