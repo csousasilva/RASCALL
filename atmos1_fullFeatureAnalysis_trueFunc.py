@@ -57,9 +57,9 @@ class Molecule:
 
     def testing_function(self):
         
-        number = 123
-        stuff = number + 3
-        
+        number = 456
+        stuff = number - 3
+        adding = 123
 
     def line_shapes(self):
         lines = []
@@ -111,6 +111,10 @@ class Molecule:
             pr_branch_y.append(intensity_j)
 
         return (pr_branch_x, pr_branch_y)
+
+    def testing_function(self):
+        number = 456
+        stuff = number - 3
 
     def average_points(self):
         points = []
