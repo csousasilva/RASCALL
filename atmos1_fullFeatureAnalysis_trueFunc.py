@@ -3,6 +3,8 @@
 Created on Tue Jan 31 11:45:49 2017
 
 @author: cssilva
+
+Version
 """
 
 # ATMOS 1 - plotting the spectral features of individual functionals within molecules
@@ -57,9 +59,10 @@ class Molecule:
         
         number = 456
         stuff = number - 3
+
         adding = 13131
         this_code = 123
-
+        adding = stuff + number+ 5
 
 
     def line_shapes(self):
