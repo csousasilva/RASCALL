@@ -59,7 +59,7 @@ class Molecule:
         
         number = 456
         stuff = number - 3
-        adding = 123
+        adding = stuff + number+ 5
 
     def line_shapes(self):
         lines = []
