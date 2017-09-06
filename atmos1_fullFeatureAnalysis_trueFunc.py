@@ -42,6 +42,7 @@ temperature = 300.0
 
 
 class Molecule:
+    
     def __init__(self, code):
         self.code = code
         self.functionals = []
@@ -51,6 +52,12 @@ class Molecule:
 
     def contains(self, element_name):
         return self.code.contains(elements[element_name])
+
+    def testing_function(self):
+        
+        number = 123
+        stuff = number + 3
+        
 
     def line_shapes(self):
         lines = []
