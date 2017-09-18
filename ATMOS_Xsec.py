@@ -35,21 +35,65 @@ TODO:
 import os
 import sys
 import cPickle as pickle
+from scipy.special import wofz
 
 DIR = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, os.path.join(DIR, '../..'))
 
 from ATMOS_Calc import *
+from SEAS_Main.atmosphere_effects.biosig_molecule import biosig_interpolate
+
+
+VERBOSE = False
+
+
+def V(x, alpha, gamma):
+    """
+    Return the Voigt line shape at x with Lorentzian component HWHM gamma
+    and Gaussian component HWHM alpha.
+
+    """
+    sigma = alpha / np.sqrt(2 * np.log(2))
+
+    return np.real(wofz((x + 1j*gamma)/sigma/np.sqrt(2))) / sigma\
+                                                           /np.sqrt(2*np.pi)
+
+
 
 class ATMOS_1_Simulator():
     
-    def __init__(self, molecule_smile):
+    def __init__(self, molecule_smile, atmosphere_window, pressure, temperature):
         
-        self.smile = molecule_smile
-        
+        self.smiles = molecule_smile
+        self.windows = atmosphere_window
+        self.pressure = pressure
+        self.temperature = temperature
     
-    def simulate_cross_section(self):
-        pass
+    def get_cross_section(self, nu):
+
+        self.load_functional_dictionary()
+        self.load_plotables()
+        self.load_molecules()
+        self.load_atmosphere_windows()
+
+        #self.calculate_detection()
+
+        selected = self.molecules[self.smiles]
+        
+        xs, ys = zip(*set(selected.average_points()))
+
+
+        # making a fake profile over the molecule
+        alpha, gamma = 5, 5
+        xsec = np.zeros(len(nu))
+        orig_array = np.linspace(-100,100,1000)
+        for i,x in enumerate(xs):
+            x_array = orig_array + x
+            y_array = V(orig_array, alpha, gamma)*ys[i]*alpha*4.5
+            yinterp = biosig_interpolate(x_array,y_array,nu,"C")
+            xsec += yinterp
+        
+        return xsec
 
 
     def load_functional_dictionary(self):
@@ -65,11 +109,15 @@ class ATMOS_1_Simulator():
         
         with open('../../SEAS_Aux/ATMOS_1/func_testvim.spaces') as f:
             functional_data = f.readlines()
+        
+        if VERBOSE:
+            print len(functional_data)
             
-        print len(functional_data)
         #this bit isnt working, maybe because the file does not have normal spacing?
         for line in functional_data:
-            print line
+            
+            if VERBOSE:
+                print line
             columns = line.strip().split()
             
             code = columns[0]
@@ -94,6 +142,7 @@ class ATMOS_1_Simulator():
             functional_dictionary[code].addSymmetry(symmetry)
             symmetry.addProperty(property)    
         
+        self.functional_dictionary = functional_dictionary
         return functional_dictionary
     
     def load_plotables(self):
@@ -107,26 +156,27 @@ class ATMOS_1_Simulator():
             plotables.append(columns[0])
         #print 'Plotables', plotables
     
+        self.plotables = plotables
         return plotables
     
-    def load_molecules(self, functional_dictionary):
+    def load_molecules(self):
         
         # Load Molecules
-        print functional_dictionary.keys()
+        if VERBOSE:
+            print self.functional_dictionary.keys()
         
         molecules = {}
         #molecule_dictionary = pickle.load(open("dict_sorted_results_func_intra_test2_numbers.p", "rb"))
         molecule_dictionary = pickle.load(open("../../SEAS_Aux/ATMOS_1/dict_sorted_results_func_intra_table_part.p", "rb"))
-        print 'Molecule dictionary sample', molecule_dictionary.items()[:5]
-        print 'Functional for molecule SCC(NN)=O', molecule_dictionary.get('SCC(NN)=O')
-        print '\n', 'Number of molecules', len(molecule_dictionary.items())
-    
-        pressure = 10e6
-        temperature = 300
         
+        if VERBOSE:
+            print 'Molecule dictionary sample', molecule_dictionary.items()[:5]
+            print 'Functional for molecule SCC(NN)=O', molecule_dictionary.get('SCC(NN)=O')
+            print '\n', 'Number of molecules', len(molecule_dictionary.items())
+    
         for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
-            molecule = Molecule(molecule_code,functional_dictionary)
-            molecule.load_atmosphere_parameters(pressure, temperature)
+            molecule = Molecule(molecule_code,self.functional_dictionary)
+            molecule.load_atmosphere_parameters(self.pressure, self.temperature)
             for functional_tuple in molecule_functionals:
                 if '#' in functional_tuple[0]:
                     
@@ -135,12 +185,12 @@ class ATMOS_1_Simulator():
                     molecule.addFunctional(functional_code, functional_incidence)
         
             molecules[molecule_code] = molecule    
-        
-        
+    
+        self.molecules = molecules
         return molecules
     
     
-    def load_atmosphere_windows(self, atmosphere_selection):
+    def load_atmosphere_windows(self):
         """
         need to completely rework this part
         """
@@ -163,21 +213,21 @@ class ATMOS_1_Simulator():
                             (4754.0,5082.0),(5158.0,5258.0),(6268.0,6610.0),(6612.0,6712.0),
                             (7704.0,8116.0),(8144.0,8244.0),(9058.0,11020.0)]
     
-        if atmosphere_selection == "earth2_atmosphere":
+        if self.windows == "earth2_atmosphere":
             atmosphere = earth2_atmosphere
             
         return atmosphere
     
     
-    def calculate_detection(self, atmosphere, molecules, plotables):
+    def calculate_detection(self):
     
         window_molecules = []
         strong_window_molecules = []
         
-        for molecule_code in molecules:
-            molecule = molecules[molecule_code]
+        for molecule_code in self.molecules:
+            molecule = self.molecules[molecule_code]
         
-            for window in atmosphere:
+            for window in self.windows:
                 
                 window_low = window[0]
                 window_high = window[1]
@@ -189,22 +239,24 @@ class ATMOS_1_Simulator():
                         window_molecules.append(molecule.code)
                         if  point_intensity >= 3:
                             strong_window_molecules.append(molecule_code)
-                            
-        print 'Window range: from ',atmosphere[0][0], ' to ', atmosphere[-1][1]
-        print 'Number of molecules in window', len(set(window_molecules))
-        print 'Number of strong molecules in window', len(set(strong_window_molecules))
+
+        if VERBOSE:                            
+            print 'Window range: from ',self.windows[0][0], ' to ', self.windows[-1][1]
+            print 'Number of molecules in window', len(set(window_molecules))
+            print 'Number of strong molecules in window', len(set(strong_window_molecules))
                             
         #looks through all of the plottable molecules and sees which exist in window
         count_exists = 0
         count_doesnt_exist = 0
         for mol in set(strong_window_molecules):
-            if mol in plotables:
+            if mol in self.plotables:
                 count_exists = count_exists + 1
             else:
                 count_doesnt_exist = count_doesnt_exist + 1
-                
-        print count_doesnt_exist, 'do not have linelists'
-        print count_exists, 'have a linelist'
+        
+        if VERBOSE:
+            print count_doesnt_exist, 'do not have linelists'
+            print count_exists, 'have a linelist'
 
 
 

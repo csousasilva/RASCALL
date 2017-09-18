@@ -44,7 +44,7 @@ sys.path.insert(0, os.path.join(DIR, '../..'))
 from SEAS_Utils.common_utils.constants import *
 
 
-
+VERBOSE = False
 
 class Molecule:
     
@@ -115,6 +115,12 @@ class Molecule:
         return (pr_branch_x, pr_branch_y)
 
     def average_points(self):
+        
+        """
+        There are duplicated points in here
+        
+        """
+        
         points = []
 
         for functional_tuple in self.functionals:
@@ -154,7 +160,9 @@ class Functional:
         self.symmetries.append(symmetry)
 
     def line_function(self, x, translateX, scaleY):
-        print("Calculating graph for functional '" + self.code + "': using default f()")
+        
+        if VERBOSE:
+            print("Calculating graph for functional '" + self.code + "': using default f()")
 
         return (1/(1+pow((x - translateX),2))) * scaleY
 
@@ -164,7 +172,8 @@ class Functional:
 class ExpFunctional(Functional):
     
     def line_function(self, x, translateX, scaleY):
-        print("Calculating graph for functional '" + self.code + "': using exp f()")
+        if VERBOSE:
+            print("Calculating graph for functional '" + self.code + "': using exp f()")
         return (self.a * np.exp(-pow((x - translateX), 2))) * scaleY
 
 class Symmetry:
@@ -191,6 +200,8 @@ class Property:
 class Intensity(Enum):
     
     w,w_m,m,m_s,s = 1,1.5,2,2.5,3
+
+    w,w_m,m,m_s,s = 0.2,0.3,0.5,0.7,1
 
     @classmethod
     def fromString(self, str):
