@@ -9,6 +9,7 @@ Version
 
 # ATMOS 1 - plotting the spectral features of individual functionals within molecules
 
+import sys
 import math
 import matplotlib.pyplot as plt
 import numpy as np
@@ -55,16 +56,6 @@ class Molecule:
     def contains(self, element_name):
         return self.code.contains(elements[element_name])
 
-    def testing_function(self):
-        
-        number = 456
-        stuff = number - 3
-
-        adding = 13131
-        this_code = 123
-        adding = stuff + number+ 5
-
-
     def line_shapes(self):
         lines = []
 
@@ -75,7 +66,7 @@ class Molecule:
                     x = np.linspace(property.low, property.high)
                     y = functional.line_function(x, property.frequency_average(), property.intensity.value)
                     lines.append((x, y))
-
+                    
         return lines
 
     def branches(self):
@@ -116,10 +107,6 @@ class Molecule:
 
         return (pr_branch_x, pr_branch_y)
 
-    def testing_function(self):
-        number = 456
-        stuff = number - 3
-
     def average_points(self):
         points = []
 
@@ -130,8 +117,7 @@ class Molecule:
                 for symmetry in functional.symmetries:
                     for property in symmetry.properties:
                         points.append((property.frequency_average(), property.intensity.value))
-                    
-
+                
         return points
     
     def high_and_low_frequencies(self):
@@ -145,11 +131,11 @@ class Molecule:
                     for property in symmetry.properties:
                         frequencies.append((property.low, property.high, property.intensity.value))
                     
-
         return frequencies
     
 
 class Functional:
+    
     def __init__(self, code, a = 1, b = 1):
         self.code = code
         self.a = a
@@ -169,21 +155,24 @@ class Functional:
 
 # Specify a subclass of functional that has a different graphing function
 class ExpFunctional(Functional):
+    
     def line_function(self, x, translateX, scaleY):
         print("Calculating graph for functional '" + self.code + "': using exp f()")
-
         return (self.a * np.exp(-pow((x - translateX), 2))) * scaleY
 
 class Symmetry:
+    
     def __init__(self, type):
         self.type = type
         self.properties = []
 
     def addProperty(self, property):
-        property.symmetry = symmetry
+        
+        property.symmetry = self
         self.properties.append(property)
 
 class Property:
+    
     def __init__(self, low, high, intensity):
         self.low = low
         self.high = high
@@ -194,11 +183,8 @@ class Property:
 #        return self.low + ((self.high - self.low) / 2)
 
 class Intensity(Enum):
-    w = 1
-    w_m = 1.5
-    m = 2
-    m_s = 2.5
-    s = 3
+    
+    w,w_m,m,m_s,s = 1,1.5,2,2.5,3
 
     @classmethod
     def fromString(self, str):
@@ -248,6 +234,9 @@ for line in functional_data:
         functional_dictionary[code] = f
 
     symmetry = Symmetry(symmetry_name)
+    
+    print symmetry
+    
     property = Property(low, high, intensity)
 
     functional_dictionary[code].addSymmetry(symmetry)
