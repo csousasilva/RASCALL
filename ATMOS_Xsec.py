@@ -41,8 +41,11 @@ DIR = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, os.path.join(DIR, '../..'))
 
 from ATMOS_Calc import *
-from SEAS_Main.atmosphere_effects.biosig_molecule import biosig_interpolate
 
+try:
+    from SEAS_Main.atmosphere_effects.biosig_molecule import biosig_interpolate
+except:
+    from interpolate import biosig_interpolate
 
 VERBOSE = False
 
