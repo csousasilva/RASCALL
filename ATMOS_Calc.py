@@ -41,8 +41,10 @@ from enum import Enum
 DIR = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, os.path.join(DIR, '../..'))
 
-from SEAS_Utils.common_utils.constants import *
-
+try:
+    from SEAS_Utils.common_utils.constants import *
+except:
+    from constants import *
 
 VERBOSE = False
 
