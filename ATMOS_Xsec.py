@@ -47,7 +47,7 @@ try:
     DATA_PATH = "../../SEAS_Aux/ATMOS_1"
 except:
     from interpolate import biosig_interpolate
-    PATA_PATH = ""
+    DATA_PATH = ""
 
 VERBOSE = False
 
