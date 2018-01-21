@@ -34,12 +34,14 @@ if __name__ == "__main__":
     pressure = 10e6
     temperature = 300
     
-    smiles = "NCC(O)(CC)"
+    smiles = "CN(OC#C)C"
 
     Simulator = ATMOS_1_Simulator(smiles, window, pressure, temperature)
-    nu  = np.arange(400,30000,1)
+    nu  = np.arange(400,3300,1)
+#    nu  = np.arange(400,30000,1)
     xsec = Simulator.get_cross_section(nu)
-    plt.plot(10000./nu, xsec, label = "ATMOS")
+#    plt.plot(10000./nu, xsec, label = "ATMOS")
+    plt.plot(nu, xsec, label="ATMOS")
     plt.show()
 
 
