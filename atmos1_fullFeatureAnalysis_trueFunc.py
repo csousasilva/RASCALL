@@ -19,15 +19,19 @@ from ATMOS_Molecule_Filter import Molecule_Filter
 import NIST_spectra
 
 
+import NIST_spectra
+
+
 # Load Functionals
 # Example data
 # COC C-O-C sbend 2500 2720 weak
 # COC C-O-C abend 2800 2920 strong
-with open('func_testvim.spaces') as f:
+with open('functionals_formatted.csv','rU') as f:
     functional_data = f.readlines()
     functional_parser = Functional_Parser()
     functional_dictionary = functional_parser.functional_dictionary_for(functional_data)
 
+print 'Functional dictionary sample', len(functional_dictionary)
 
 # Load Molecules
 #Molecule dictionary sample [('C(C1)(C1F)(CC)', [('[H]C([H])(C)C', 2), ('[H]C([H])([!#1])[!#1]', 2),('[H]C([H])([H])C', 1), ('[H]C([H])([H])[!#1]', 1)]),...]
@@ -185,7 +189,7 @@ print count_doesnt_exist, 'do not have linelists'
 print count_exists, 'have a linelist'
 
 #plot experimental data together with ATMOS data
-molecule_code = "C=CC(C)=O"
+molecule_code = "C(C)NCC(O)"
 
 #experimental_points = NIST_spectra.nist_spectrum(molecule_code)
 #plt.plot(experimental_points[0], experimental_points[1])
@@ -194,7 +198,7 @@ molecule_to_plot = molecules[molecule_code]
 plotter = Plotter()
 plotter.plot_molecule_band_centers(molecule_to_plot)
 plotter.plot_NIST_spectrum(molecule_code)
-plotter.plot_ATMOS_crosssections(molecule_code)
+#plotter.plot_ATMOS_crosssections(molecule_code)
 
 plotter.show()
 

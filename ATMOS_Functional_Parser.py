@@ -7,7 +7,7 @@ class Functional_Parser:
         print "func rows ", len(functional_data)
 
         for line in functional_data:
-            columns = line.strip().split()
+            columns = line.strip().split(',')
 
             functional = Functional(columns)
 
