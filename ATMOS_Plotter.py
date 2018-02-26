@@ -40,7 +40,9 @@ class Plotter:
     def plot_NIST_spectrum(self, molecule_smile):
 
         nu, coef = NIST_spectra.nist_spectrum(molecule_smile)
+        print nu, coef
         plt.plot(nu, coef)
+
 
     def plot_ATMOS_crosssections(self, molecule_smile):
 
