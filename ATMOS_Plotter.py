@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 #import seaborn as sns
+import NIST_spectra
+import ATMOS_crosssections
 
 
 class Plotter:
@@ -27,10 +29,24 @@ class Plotter:
 
         # plt.xlim(1459,1459.5)
         print 'Molecule below : ', molecule.code
-        plt.show()
+
 
         # Plot lines
         # for line in example.lines():
         #    x, y = line
 
         #    plt.plot(x, y)
+
+    def plot_NIST_spectrum(self, molecule_smile):
+
+        nu, coef = NIST_spectra.nist_spectrum(molecule_smile)
+        plt.plot(nu, coef)
+
+    def plot_ATMOS_crosssections(self, molecule_smile):
+
+        nu, xsec = ATMOS_crosssections.ATMOS_crosssection(molecule_smile)
+        plt.plot(nu, xsec, label="ATMOS")
+
+    def show(self):
+        plt.show()
+

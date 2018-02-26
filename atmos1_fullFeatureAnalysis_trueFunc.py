@@ -16,6 +16,9 @@ from ATMOS_Plotter import Plotter
 from ATMOS_Molecule_Filter import Molecule_Filter
 
 
+import NIST_spectra
+
+
 # Load Functionals
 # Example data
 # COC C-O-C sbend 2500 2720 weak
@@ -181,11 +184,19 @@ for mol in set(strength_filtered_molecules):
 print count_doesnt_exist, 'do not have linelists'
 print count_exists, 'have a linelist'
 
-molecule_code = 'CN(OC#C)C'
+#plot experimental data together with ATMOS data
+molecule_code = "C=CC(C)=O"
+
+#experimental_points = NIST_spectra.nist_spectrum(molecule_code)
+#plt.plot(experimental_points[0], experimental_points[1])
+
 molecule_to_plot = molecules[molecule_code]
 plotter = Plotter()
 plotter.plot_molecule_band_centers(molecule_to_plot)
+plotter.plot_NIST_spectrum(molecule_code)
+plotter.plot_ATMOS_crosssections(molecule_code)
 
+plotter.show()
 
 
 

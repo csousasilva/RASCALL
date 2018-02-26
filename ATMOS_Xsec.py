@@ -116,7 +116,7 @@ class ATMOS_1_Simulator():
         functional_dictionary = {}
         #functional_data = open('func_table_reliable.txt', "r")
         
-        with open(os.path.join(DATA_PATH,"func_testvim.spaces")) as f:
+        with open("func_testvim.spaces") as f:
             functional_data = f.readlines()
         
         if VERBOSE:
@@ -158,7 +158,7 @@ class ATMOS_1_Simulator():
     
         #looks through all of the plottable molecules
         plotables = []
-        plotable_molecules = open(os.path.join(DATA_PATH,"plotable_molecules"), "r")
+        plotable_molecules = open("plotable_molecules", "r")
         for line in plotable_molecules:
             columns = line.strip().split()
             
@@ -176,7 +176,7 @@ class ATMOS_1_Simulator():
         
         molecules = {}
         #molecule_dictionary = pickle.load(open("dict_sorted_results_func_intra_test2_numbers.p", "rb"))
-        molecule_dictionary = pickle.load(open(os.path.join(DATA_PATH,"dict_sorted_results_func_intra_table_part.p"), "rb"))
+        molecule_dictionary = pickle.load(open("dict_sorted_results_func_intra_table_part.p"))
         
         if VERBOSE:
             print 'Molecule dictionary sample', molecule_dictionary.items()[:5]
