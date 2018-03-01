@@ -35,13 +35,13 @@ print 'Functional dictionary sample', len(functional_dictionary)
 
 # Load Molecules
 #Molecule dictionary sample [('C(C1)(C1F)(CC)', [('[H]C([H])(C)C', 2), ('[H]C([H])([!#1])[!#1]', 2),('[H]C([H])([H])C', 1), ('[H]C([H])([H])[!#1]', 1)]),...]
-molecule_file_name = "dict_sorted_results_func_intra_table_part.p"
+molecule_file_name = "dict_funct_ATMOS_Feb2018-2.p"
 molecule_dictionary = pickle.load(open(molecule_file_name, "rb"))
 molecule_parser = Molecule_Parser()
 molecules = molecule_parser.molecules_for(molecule_dictionary, functional_dictionary)
 
 
-#print 'Molecule dictionary sample', molecule_dictionary.items()[:5]
+print 'Molecule dictionary sample', molecule_dictionary.items()[:5]
 #print 'Functionals for molecule C(C)NCC(O)', molecule_dictionary.get('C(C)NCC(O)')
 
 
@@ -189,7 +189,8 @@ print count_doesnt_exist, 'do not have linelists'
 print count_exists, 'have a linelist'
 
 #plot experimental data together with ATMOS data
-molecule_code = "C(C)NCC(O)"
+molecule_code = "CBr"
+print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
 
 #experimental_points = NIST_spectra.nist_spectrum(molecule_code)
 #plt.plot(experimental_points[0], experimental_points[1])
@@ -197,7 +198,7 @@ molecule_code = "C(C)NCC(O)"
 molecule_to_plot = molecules[molecule_code]
 plotter = Plotter()
 plotter.plot_molecule_band_centers(molecule_to_plot)
-plotter.plot_NIST_spectrum(molecule_code)
+#plotter.plot_NIST_spectrum(molecule_code)
 #plotter.plot_ATMOS_crosssections(molecule_code)
 
 plotter.show()

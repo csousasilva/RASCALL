@@ -17,7 +17,7 @@ class Plotter:
         filtered_list = list(filter(lambda x: 1600 < x[0] < 1900, molecule.average_points()))
         # print 'filter:',(filtered_list)
 
-        print xs, ys
+        #print xs, ys
         markerline, stemlines, baseline = plt.stem(xs, ys, '-')
         plt.setp(baseline, 'color', 'r', 'linewidth', 1)
 
@@ -40,7 +40,7 @@ class Plotter:
     def plot_NIST_spectrum(self, molecule_smile):
 
         nu, coef = NIST_spectra.nist_spectrum(molecule_smile)
-        print nu, coef
+        #print nu, coef
         plt.plot(nu, coef)
 
 

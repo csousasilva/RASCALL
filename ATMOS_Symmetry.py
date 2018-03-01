@@ -8,7 +8,7 @@ class Symmetry:
 
     def addProperty(self, property):
         self.properties.append(property)
-        print property.low, property.high, property.intensity.value
+        #print property.low, property.high, property.intensity.value
 
 
 class Property:

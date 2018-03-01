@@ -4,7 +4,7 @@ class Functional_Parser:
 
     def functional_dictionary_for(self, functional_data):
         functional_dictionary = {}
-        print "func rows ", len(functional_data)
+        print "func table rows ", len(functional_data)
 
         for line in functional_data:
             columns = line.strip().split(',')

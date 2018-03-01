@@ -30,6 +30,7 @@ class Molecule:
 
             for symmetry in functional.symmetries:
                 for property in symmetry.properties:
-                    frequencies.append((float(property.low), float(property.high), float(property.intensity.value)))
+                    if property.low != 'UNK':
+                        frequencies.append((float(property.low), float(property.high), float(property.intensity.value)))
 
         return frequencies
