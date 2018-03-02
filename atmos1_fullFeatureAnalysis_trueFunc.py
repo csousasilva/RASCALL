@@ -197,7 +197,7 @@ print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functio
 
 molecule_to_plot = molecules[molecule_code]
 plotter = Plotter()
-#plotter.plot_molecule_band_centers(molecule_to_plot)
+plotter.plot_molecule_band_centers(molecule_to_plot)
 plotter.plot_NIST_spectrum(molecule_code)
 #plotter.plot_ATMOS_crosssections(molecule_code)
 

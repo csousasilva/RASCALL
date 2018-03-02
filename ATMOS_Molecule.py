@@ -18,7 +18,8 @@ class Molecule:
             functional = functional_tuple[0]
             for symmetry in functional.symmetries:
                 for property in symmetry.properties:
-                    points.append((property.frequency_average(), property.intensity.value))
+                    if property.low != 'UNK':
+                        points.append((property.frequency_average(), property.intensity.value))
 
         return points
 
