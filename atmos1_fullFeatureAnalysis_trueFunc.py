@@ -31,6 +31,9 @@ with open('functionals_formatted.csv','rU') as f:
     functional_parser = Functional_Parser()
     functional_dictionary = functional_parser.functional_dictionary_for(functional_data)
 
+functional_to_check = functional_dictionary['[!#1]N(=O)=O']
+print 'functional_to_check', len(functional_to_check.symmetries)
+
 print 'Functional dictionary sample', len(functional_dictionary)
 
 # Load Molecules
@@ -189,20 +192,37 @@ print count_doesnt_exist, 'do not have linelists'
 print count_exists, 'have a linelist'
 
 #plot experimental data together with ATMOS data
-molecule_code = "C=CC(C)=O"
+#molecule_code = "CCCCC#N"
 print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
+
 
 #experimental_points = NIST_spectra.nist_spectrum(molecule_code)
 #plt.plot(experimental_points[0], experimental_points[1])
 
-molecule_to_plot = molecules[molecule_code]
+#molecule_to_plot = molecules[molecule_code]
 plotter = Plotter()
-plotter.plot_molecule_band_centers(molecule_to_plot)
-plotter.plot_NIST_spectrum(molecule_code)
+
+#plotter.plot_molecule_band_centers(molecule_to_plot)
+#plotter.plot_NIST_spectrum(molecule_code)
 #plotter.plot_ATMOS_crosssections(molecule_code)
 
-plotter.show()
+
+#plotter.show(molecule_code)
 
 
+#[H]OP([H])([!#1])=O
+#Functional for HCN, specifically for the ≡C-H bending and stretching motions, is '[H]C#C[!#1]'
+
+
+#Code to plot all molecules with NIST spectra alongside ATMOS
+for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
+      if molecule_code in plotables:
+          print 'plotting', molecule_code
+          plotter.plot_molecule_band_centers(molecules[molecule_code])
+          plotter.plot_NIST_spectrum(molecule_code)
+
+          plotter.show(molecule_code)
+
+plotter.show(molecule_code)
 
 

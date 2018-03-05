@@ -11,10 +11,13 @@ class Functional_Parser:
 
             functional = Functional(columns)
 
+
             if functional_dictionary.has_key(functional.code):
+
                 for symmetry in functional.symmetries:
                     functional_dictionary[functional.code].addSymmetry(symmetry)
             else:
                 functional_dictionary[functional.code] = functional
 
         return functional_dictionary
+

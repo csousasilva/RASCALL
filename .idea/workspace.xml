@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc24a092-8537-4d4b-aee6-54fd5b161a0f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ATMOS_Molecule.py" afterPath="$PROJECT_DIR$/ATMOS_Molecule.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ATMOS_Functional.py" afterPath="$PROJECT_DIR$/ATMOS_Functional.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ATMOS_Functional_Parser.py" afterPath="$PROJECT_DIR$/ATMOS_Functional_Parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ATMOS_Plotter.py" afterPath="$PROJECT_DIR$/ATMOS_Plotter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/atmos1_fullFeatureAnalysis_trueFunc.py" afterPath="$PROJECT_DIR$/atmos1_fullFeatureAnalysis_trueFunc.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,8 +23,8 @@
       <file leaf-file-name="NIST_spectra.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NIST_spectra.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="55" column="44" lean-forward="false" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="44" />
+            <state relative-caret-position="135">
+              <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -32,11 +33,9 @@
       <file leaf-file-name="atmos1_fullFeatureAnalysis_trueFunc.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/atmos1_fullFeatureAnalysis_trueFunc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1434">
-              <caret line="200" column="0" lean-forward="false" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
-              <folding>
-                <marker date="1520022619937" expanded="true" signature="7882:7972" ph="..." />
-              </folding>
+            <state relative-caret-position="354">
+              <caret line="224" column="0" lean-forward="true" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -44,8 +43,8 @@
       <file leaf-file-name="ATMOS_Symmetry.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ATMOS_Symmetry.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+            <state relative-caret-position="36">
+              <caret line="20" column="59" lean-forward="true" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -56,8 +55,8 @@
       <file leaf-file-name="ATMOS_Functional_Parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ATMOS_Functional_Parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="321">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -66,8 +65,8 @@
       <file leaf-file-name="ATMOS_Functional.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ATMOS_Functional.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+            <state relative-caret-position="255">
+              <caret line="28" column="27" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -78,8 +77,8 @@
       <file leaf-file-name="ATMOS_Plotter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ATMOS_Plotter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="42" column="9" lean-forward="false" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+            <state relative-caret-position="306">
+              <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -90,7 +89,7 @@
       <file leaf-file-name="ATMOS_Molecule.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ATMOS_Molecule.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
+            <state relative-caret-position="315">
               <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -116,6 +115,7 @@
       <find>biosig_interpolate</find>
       <find>HEAD</find>
       <find>print</find>
+      <find>line</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -129,18 +129,18 @@
         <option value="$PROJECT_DIR$/ATMOS_Xsec.py" />
         <option value="$PROJECT_DIR$/ATMOS_crosssections.py" />
         <option value="$PROJECT_DIR$/NIST_spectra.py" />
-        <option value="$PROJECT_DIR$/ATMOS_Functional.py" />
-        <option value="$PROJECT_DIR$/ATMOS_Functional_Parser.py" />
-        <option value="$PROJECT_DIR$/ATMOS_Plotter.py" />
         <option value="$PROJECT_DIR$/ATMOS_Symmetry.py" />
         <option value="$PROJECT_DIR$/ATMOS_Molecule_Parser.py" />
         <option value="$PROJECT_DIR$/ATMOS_Molecule.py" />
+        <option value="$PROJECT_DIR$/ATMOS_Plotter.py" />
+        <option value="$PROJECT_DIR$/ATMOS_Functional.py" />
+        <option value="$PROJECT_DIR$/ATMOS_Functional_Parser.py" />
         <option value="$PROJECT_DIR$/atmos1_fullFeatureAnalysis_trueFunc.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="3" />
+    <option name="x" value="69" />
     <option name="y" value="23" />
     <option name="width" value="1366" />
     <option name="height" value="745" />
@@ -413,15 +413,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3" y="23" width="1366" height="745" extended-state="6" />
-    <editor active="true" />
+    <frame x="69" y="23" width="1366" height="745" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32840237" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32840237" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -479,9 +479,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2655">
           <caret line="187" column="49" lean-forward="true" selection-start-line="187" selection-start-column="49" selection-end-line="187" selection-end-column="49" />
-          <folding>
-            <marker date="1520022619937" expanded="true" signature="7882:7972" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -521,9 +519,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1520022619937" expanded="true" signature="7882:7972" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -563,9 +559,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1520022619937" expanded="true" signature="7882:7972" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -589,9 +583,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <marker date="1520022619937" expanded="true" signature="7882:7972" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -684,36 +676,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ATMOS_Plotter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="9" lean-forward="false" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+        <state relative-caret-position="306">
+          <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ATMOS_Functional_Parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ATMOS_Functional.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        <state relative-caret-position="255">
+          <caret line="28" column="27" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ATMOS_Molecule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ATMOS_Functional_Parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ATMOS_Symmetry.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+        <state relative-caret-position="36">
+          <caret line="20" column="59" lean-forward="true" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
@@ -722,29 +724,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NIST_spectra.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="55" column="44" lean-forward="false" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="44" />
+        <state relative-caret-position="135">
+          <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ATMOS_Molecule.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/atmos1_fullFeatureAnalysis_trueFunc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1434">
-          <caret line="200" column="0" lean-forward="false" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
-          <folding>
-            <marker date="1520022619937" expanded="true" signature="7882:7972" ph="..." />
-          </folding>
+        <state relative-caret-position="354">
+          <caret line="224" column="0" lean-forward="true" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

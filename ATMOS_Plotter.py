@@ -49,6 +49,9 @@ class Plotter:
         nu, xsec = ATMOS_crosssections.ATMOS_crosssection(molecule_smile)
         plt.plot(nu, xsec, label="ATMOS")
 
-    def show(self):
+    def show(self, molecule_smile):
+        plt.xlabel('Wavenumbers')
+        plt.ylabel('Intensity')
+        plt.title(molecule_smile)
         plt.show()
 
