@@ -33,6 +33,7 @@ wheels/
 #PyCharm Stuff
 .idea
 .git
+.idea/workspace.xml
 
 #Mac
 .DS_Store
