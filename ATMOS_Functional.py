@@ -1,6 +1,7 @@
 from ATMOS_Symmetry import Symmetry
 from ATMOS_Symmetry import Intensity
 from ATMOS_Symmetry import Property
+import numpy as np
 
 
 class Functional:
@@ -15,9 +16,10 @@ class Functional:
         intensity = Intensity.fromString(functional_row[4])
         intensity_quant = functional_row[4]
         line_shape = functional_row[5]
-        functional_class = functional_row[6]
-        functional_type = functional_row[7]
-        notes = functional_row[8]
+        source = functional_row[6]
+        functional_class = functional_row[7]
+        functional_type = functional_row[8]
+        notes = functional_row[9]
 
 
         property = Property(low, high, intensity)
@@ -27,6 +29,28 @@ class Functional:
 
     def addSymmetry(self, symmetry):
         self.symmetries.append(symmetry)
+
+    def averageSymmetries(self):
+        uniqueSymmetries = set(map(lambda symmetry: symmetry.type, self.symmetries))
+
+        filteredSymmetries = []
+        averageSymmetries = []
+
+        for uniqueSymmetry in uniqueSymmetries:
+            matchingSymmetries = list(filter(lambda symmetry: symmetry.type == uniqueSymmetry, self.symmetries))
+            filteredSymmetries.append(matchingSymmetries)
+
+        for likeSymmetries in filteredSymmetries:
+            allLows = list(map(lambda symmetry: float(symmetry.properties[0].low), likeSymmetries))
+            allHighs = list(map(lambda symmetry: float(symmetry.properties[0].high), likeSymmetries))
+            averageLow = np.mean(allLows)
+            averageHigh = np.mean(allHighs)
+            averageSymmetry = Symmetry(likeSymmetries[0].type)
+            averageProperty = Property(averageLow, averageHigh, 999)
+            averageSymmetry.addProperty(averageProperty)
+            averageSymmetries.append(averageSymmetry)
+
+        return averageSymmetries
 
 
 
