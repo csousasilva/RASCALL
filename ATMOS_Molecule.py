@@ -16,12 +16,15 @@ class Molecule:
 
         for functional_tuple in self.functionals:
             functional = functional_tuple[0]
-            for symmetry in functional.symmetries:
+            for symmetry in functional.averageSymmetries():
+#                print 'before plotting', symmetry.properties[0].frequency_average()
                 for property in symmetry.properties:
                     if property.low != 'UNK':
-                        points.append((property.frequency_average(), property.intensity.value))
+                        points.append((property.frequency_average(), property.intensity))
 
         return points
+
+
 
     def high_and_low_frequencies(self):
         frequencies = []

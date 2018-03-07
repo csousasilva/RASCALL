@@ -41,14 +41,17 @@ class Functional:
             filteredSymmetries.append(matchingSymmetries)
 
         for likeSymmetries in filteredSymmetries:
-            allLows = list(map(lambda symmetry: float(symmetry.properties[0].low), likeSymmetries))
-            allHighs = list(map(lambda symmetry: float(symmetry.properties[0].high), likeSymmetries))
-            averageLow = np.mean(allLows)
-            averageHigh = np.mean(allHighs)
-            averageSymmetry = Symmetry(likeSymmetries[0].type)
-            averageProperty = Property(averageLow, averageHigh, 999)
-            averageSymmetry.addProperty(averageProperty)
-            averageSymmetries.append(averageSymmetry)
+            if Symmetry(likeSymmetries[0].properties[0].low) != 'UNK':
+                allLows = list(map(lambda symmetry: float(symmetry.properties[0].low), likeSymmetries))
+                allHighs = list(map(lambda symmetry: float(symmetry.properties[0].high), likeSymmetries))
+                allInts = list(map(lambda symmetry: float(symmetry.properties[0].intensity.value), likeSymmetries))
+                averageLow = np.mean(allLows)
+                averageHigh = np.mean(allHighs)
+                averageInt = np.mean(allInts)
+                averageSymmetry = Symmetry(likeSymmetries[0].type)
+                averageProperty = Property(averageLow, averageHigh, averageInt)
+                averageSymmetry.addProperty(averageProperty)
+                averageSymmetries.append(averageSymmetry)
 
         return averageSymmetries
 

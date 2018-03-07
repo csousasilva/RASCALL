@@ -199,7 +199,7 @@ print 'test1', molecules[molecule_code].functionals[0][0].averageSymmetries()
 averageSymmetries = molecules[molecule_code].functionals[0][0].averageSymmetries()
 
 for symmetry in averageSymmetries:
-    print symmetry.type, symmetry.properties[0].low, symmetry.properties[0].high
+    print symmetry.type, symmetry.properties[0].low, symmetry.properties[0].high, symmetry.properties[0].intensity
 
 #experimental_points = NIST_spectra.nist_spectrum(molecule_code)
 #plt.plot(experimental_points[0], experimental_points[1])
@@ -218,7 +218,7 @@ plotter = Plotter()
 #[H]OP([H])([!#1])=O
 #Functional for HCN, specifically for the ≡C-H bending and stretching motions, is '[H]C#C[!#1]'
 
-"""
+#"""
 #Code to plot all molecules with NIST spectra alongside ATMOS
 for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
       if molecule_code in plotables:
@@ -229,6 +229,6 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
           plotter.show(molecule_code)
 
 plotter.show(molecule_code)
-"""
+#"""
 
 
