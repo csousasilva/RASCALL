@@ -21,8 +21,14 @@ class Molecule:
                 for property in symmetry.properties:
                     if property.low != 'UNK':
                         points.append((property.frequency_average(), property.intensity))
+                    elif property.low == 'UNK':
+                        print 'found unk'
+
+
+
 
         return points
+
 
 
 

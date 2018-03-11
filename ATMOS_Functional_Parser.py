@@ -19,5 +19,16 @@ class Functional_Parser:
             else:
                 functional_dictionary[functional.code] = functional
 
+        self.replaceUnkowns(functional_dictionary)
         return functional_dictionary
 
+
+    def replaceUnkowns(self, functional_dictionary):
+        for functional in functional_dictionary.values():
+            for symmetry in functional.symmetries:
+                for property in symmetry.properties:
+                    if property.low == 'UNK':
+                        principal_functional = property.functional_class.strip().split(' ')[1]
+                        functionalToCopy = functional_dictionary[principal_functional]
+
+                        functional.symmetries = functionalToCopy.symmetries

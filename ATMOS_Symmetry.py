@@ -12,10 +12,11 @@ class Symmetry:
 
 
 class Property:
-    def __init__(self, low, high, intensity):
+    def __init__(self, low, high, intensity, functional_class):
         self.low = low
         self.high = high
         self.intensity = intensity
+        self.functional_class = functional_class
 
     def frequency_average(self):
         return np.mean([float(self.high), float(self.low)])
