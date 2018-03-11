@@ -78,7 +78,7 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
 
 molecules_with_triplebondCH = []
 for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
-     if any('[H]C#C[!#1]' in s for s in molecule_dictionary.get(molecule_code)):
+     if any('[H]OC' in s for s in molecule_dictionary.get(molecule_code)):
          #print molecule_code, 'has ≡C-H functional and all these other functionals:', molecule_dictionary.get(molecule_code)
          molecules_with_triplebondCH.append(molecule_code)
 
@@ -94,7 +94,7 @@ for molecule_code in molecules_with_triplebondCH:
 #        print molecule_code, 'no linelist '
 
 #print len(molecules_with_triplebondCH_and_spectra), 'molecules have a similar ≡C-H functional and spectra'
-#print molecules_with_triplebondCH_and_spectra
+print 'weak functional', molecules_with_triplebondCH_and_spectra
 
 
 #co2 atmosphere
@@ -192,11 +192,11 @@ print count_doesnt_exist, 'do not have linelists'
 print count_exists, 'have a linelist'
 
 #plot experimental data together with ATMOS data
-molecule_code = "C1CO1"
+molecule_code = "OC(=O)C(Cl)"
 print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
 
-print 'test1', molecules[molecule_code].functionals[0][0].averageSymmetries()
-averageSymmetries = molecules[molecule_code].functionals[0][0].averageSymmetries()
+print 'test1', molecules[molecule_code].functionals[5][0].averageSymmetries()
+averageSymmetries = molecules[molecule_code].functionals[5][0].averageSymmetries()
 
 for symmetry in averageSymmetries:
     print symmetry.type, symmetry.properties[0].low, symmetry.properties[0].high, symmetry.properties[0].intensity
@@ -204,21 +204,21 @@ for symmetry in averageSymmetries:
 #experimental_points = NIST_spectra.nist_spectrum(molecule_code)
 #plt.plot(experimental_points[0], experimental_points[1])
 
-#molecule_to_plot = molecules[molecule_code]
+molecule_to_plot = molecules[molecule_code]
 plotter = Plotter()
 
-#plotter.plot_molecule_band_centers(molecule_to_plot)
-#plotter.plot_NIST_spectrum(molecule_code)
+plotter.plot_molecule_band_centers(molecule_to_plot)
+plotter.plot_NIST_spectrum(molecule_code)
 #plotter.plot_ATMOS_crosssections(molecule_code)
 
 
-#plotter.show(molecule_code)
+plotter.show(molecule_code)
 
 
 #[H]OP([H])([!#1])=O
 #Functional for HCN, specifically for the ≡C-H bending and stretching motions, is '[H]C#C[!#1]'
 
-#"""
+"""
 #Code to plot all molecules with NIST spectra alongside ATMOS
 for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
       if molecule_code in plotables:
@@ -229,6 +229,6 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
           plotter.show(molecule_code)
 
 plotter.show(molecule_code)
-#"""
+"""
 
 

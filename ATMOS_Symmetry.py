@@ -26,15 +26,19 @@ class Intensity(Enum):
     @classmethod
     def fromString(self, str):
         string = str.lower()
-        if string == 's':
+        if string == 'w':
+            return Intensity.w
+        elif string == 's':
             return Intensity.s
-        elif string == 'm-s' or 'm_s' :
+        elif string == 'm-s':
+            return Intensity.m_s
+        elif string == 'm_s':
             return Intensity.m_s
         elif string == 'm':
             return Intensity.m
-        elif string == 'w-m' or 'w_m':
+        elif string == 'w-m':
             return Intensity.w_m
-        elif string == 'w':
-            return Intensity.w
+        elif string == 'w_m':
+            return Intensity.w_m
         elif string == 'UNK':
             return Intensity.UNK
