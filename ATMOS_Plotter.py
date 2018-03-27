@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 #import seaborn as sns
 import NIST_spectra
 import ATMOS_crosssections
-
+import numpy as np
 
 class Plotter:
     def plot_molecule_band_centers(self, molecule):
@@ -38,10 +38,22 @@ class Plotter:
         #    plt.plot(x, y)
 
     def plot_NIST_spectrum(self, molecule_smile):
-
+        Absorption_Boost = 3
         nu, coef = NIST_spectra.nist_spectrum(molecule_smile)
-        #print nu, coef
-        plt.plot(nu, coef)
+
+        abfix = []
+        for i in coef:
+            if i > 2:
+                abfix.append(2)
+            else:
+                abfix.append(i)
+        coef = np.array(abfix)
+        absorb_baseline = 0.001  # baseline_als(absorb1, 10**6, 0.001, niter=10)
+        absorb2 = coef - absorb_baseline
+        coef2 = absorb2 / max(absorb2) * Absorption_Boost
+
+
+        plt.plot(nu, coef2)
 
 
     def plot_ATMOS_crosssections(self, molecule_smile):

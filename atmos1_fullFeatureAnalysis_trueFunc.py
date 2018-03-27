@@ -192,14 +192,14 @@ print count_doesnt_exist, 'do not have linelists'
 print count_exists, 'have a linelist'
 
 #plot experimental data together with ATMOS data
-molecule_code = "C=C"
-print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
+#molecule_code = "CSC"
+#print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
 
-print 'test1', molecules[molecule_code].functionals[2][0].averageSymmetries()
+#print 'test1', molecules[molecule_code].functionals[2][0].averageSymmetries()
 averageSymmetries = molecules[molecule_code].functionals[2][0].averageSymmetries()
 
-for symmetry in averageSymmetries:
-    print symmetry.type, symmetry.properties[0].low, symmetry.properties[0].high, symmetry.properties[0].intensity
+#for symmetry in averageSymmetries:
+#    print symmetry.type, symmetry.properties[0].low, symmetry.properties[0].high, symmetry.properties[0].intensity
 
 #experimental_points = NIST_spectra.nist_spectrum(molecule_code)
 #plt.plot(experimental_points[0], experimental_points[1])
