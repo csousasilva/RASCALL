@@ -138,12 +138,12 @@ test_window = [(600,950),(1400,1500)]
 atmosphere = methane2
 intensity = 3
 
-molecule_filter = Molecule_Filter(molecules)
+#molecule_filter = Molecule_Filter(molecules)
 #filtered_molecules = molecule_filter.filter_for_region(atmosphere)
 
 
-strength_filtered_molecules = molecule_filter.filter_for_region_and_intensity(atmosphere, intensity)
-print "our return", len(strength_filtered_molecules)
+#strength_filtered_molecules = molecule_filter.filter_for_region_and_intensity(atmosphere, intensity)
+#print "our return", len(strength_filtered_molecules)
 
 
 
@@ -182,6 +182,7 @@ print "our return", len(strength_filtered_molecules)
 #looks through all of the plottable molecules and sees which exist in window
 count_exists = 0
 count_doesnt_exist = 0
+"""
 for mol in set(strength_filtered_molecules):
     if mol in plotables:
         count_exists = count_exists + 1
@@ -190,6 +191,7 @@ for mol in set(strength_filtered_molecules):
         
 print count_doesnt_exist, 'do not have linelists'
 print count_exists, 'have a linelist'
+"""
 
 #plot experimental data together with ATMOS data
 #molecule_code = "CSC"
@@ -228,7 +230,5 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
 
           plotter.show(molecule_code)
 
-plotter.show(molecule_code)
 #"""
-
 

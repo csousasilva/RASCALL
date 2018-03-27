@@ -16,7 +16,7 @@ class Functional:
         intensity = Intensity.fromString(functional_row[4])
         intensity_quant = functional_row[5]
         line_shape = functional_row[6]
-        source = functional_row[7]
+        self.source = functional_row[7]
         functional_class = functional_row[8]
         functional_type = functional_row[9]
         notes = functional_row[10]
