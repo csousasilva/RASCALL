@@ -57,10 +57,17 @@ def test_nist():
 
 def nist_spectrum(molecule_smile):
 
-    #nu, coef = load_NIST_spectra('C=CC(C)=O', ["wn","A"], True)
-    nu, coef = load_NIST_spectra(molecule_smile, ["wn","A"], True, NIST_Spectra="NIST_Spectra")
+    NIST_data = NIST_Smile_List()
+    NIST_Smiles = NIST_data[0]
+    CAS = NIST_data[2]
 
-    return nu, coef
+    #Smiles = "CCCCC"
+
+    cas = CAS[list(NIST_Smiles).index(molecule_smile)]
+
+    nu, absorb = np.load("NIST_Spectra_Smile_Calibrated/%s.npy" % cas)
+
+    return nu, absorb
 
 #    plt.plot(nu,coef)
 #    plt.show()

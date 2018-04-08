@@ -26,7 +26,11 @@ class Plotter:
 
         # for functional in molecule
         points = []
-        colours = ['xkcd:turquoise', 'xkcd:hunter green', 'xkcd:crimson', 'xkcd:ochre', 'xkcd:dusty rose', 'xkcd:medium blue', 'xkcd:greyish green', 'xkcd:poop']
+        colours = ['xkcd:turquoise', 'xkcd:hunter green', 'xkcd:crimson',\
+                   'xkcd:ochre', 'xkcd:dusty rose', 'xkcd:medium blue',\
+                   'xkcd:greyish green', 'xkcd:wine red', 'xkcd:green brown', \
+                   'xkcd:dark orange', 'xkcd:scarlet', 'xkcd:emerald green', \
+                   'xkcd:cobalt blue', 'xkcd:neon blue', 'xkcd:evergreen']
         i = 0
         for functional_tuple in molecule.functionals:
             functional = functional_tuple[0]
@@ -90,19 +94,7 @@ class Plotter:
         Absorption_Boost = 3
         nu, coef = NIST_spectra.nist_spectrum(molecule_smile)
 
-        abfix = []
-        for i in coef:
-            if i > 2:
-                abfix.append(2)
-            else:
-                abfix.append(i)
-        coef = np.array(abfix)
-        absorb_baseline = 0.001  # baseline_als(absorb1, 10**6, 0.001, niter=10)
-        absorb2 = coef - absorb_baseline
-        coef2 = absorb2 / max(absorb2) * Absorption_Boost
-
-
-        plt.plot(nu, coef2)
+        plt.plot(nu, coef* Absorption_Boost)
 
 
     def plot_ATMOS_crosssections(self, molecule_smile):

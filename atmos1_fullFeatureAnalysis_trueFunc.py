@@ -15,7 +15,7 @@ from ATMOS_Molecule_Parser import Molecule_Parser
 from ATMOS_Plotter import Plotter
 from ATMOS_Molecule_Filter import Molecule_Filter
 
-
+from plot_NIST_transmission_spectra import NIST_Smile_List
 import NIST_spectra
 
 
@@ -194,11 +194,11 @@ print count_exists, 'have a linelist'
 """
 
 #plot experimental data together with ATMOS data
-#molecule_code = "CSC"
+#molecule_code = "O"
 #print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
 
 #print 'test1', molecules[molecule_code].functionals[2][0].averageSymmetries()
-averageSymmetries = molecules[molecule_code].functionals[2][0].averageSymmetries()
+#averageSymmetries = molecules[molecule_code].functionals[2][0].averageSymmetries()
 
 #for symmetry in averageSymmetries:
 #    print symmetry.type, symmetry.properties[0].low, symmetry.properties[0].high, symmetry.properties[0].intensity
@@ -222,11 +222,15 @@ plotter = Plotter()
 
 #"""
 #Code to plot all molecules with NIST spectra alongside ATMOS
+
+NIST_data = NIST_Smile_List()
+NIST_Smiles = NIST_data[0]
+
 for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
-      if molecule_code in plotables:
+      if molecule_code in NIST_Smiles:
           print 'plotting', molecule_code
           plotter.plot_molecule_band_centers(molecules[molecule_code])
-          plotter.plot_NIST_spectrum(molecule_code)
+#          plotter.plot_NIST_spectrum(molecule_code)
 
           plotter.show(molecule_code)
 
