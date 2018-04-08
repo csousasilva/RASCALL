@@ -230,8 +230,8 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
       if molecule_code in NIST_Smiles:
           print 'plotting', molecule_code
           plotter.plot_molecule_band_centers(molecules[molecule_code])
-#          plotter.plot_NIST_spectrum(molecule_code)
-
+          plotter.plot_NIST_spectrum(molecule_code)
+          print 'Modes:', molecule_dictionary.get(molecule_code)
           plotter.show(molecule_code)
 
 #"""

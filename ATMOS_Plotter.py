@@ -41,6 +41,7 @@ class Plotter:
                         points.append((property.frequency_average(), property.intensity))
                         x = [property.frequency_average()]
                         y = [property.intensity]
+                        print functional.code, symmetry.type, int(property.frequency_average()),property.intensity, colours[i]
 
                         if functional.source == 'ATMOS':
                             markerline, stemlines, baseline = plt.stem(x, y, '--')

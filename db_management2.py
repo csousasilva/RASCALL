@@ -109,13 +109,13 @@ class database():
             return os.path.exists(path)
     
     def is_db(self):
-        print os.path.join(self.db_dir, self.db_name)
+#        print os.path.join(self.db_dir, self.db_name)
         return os.path.isfile(os.path.join(self.db_dir, self.db_name))
         
          
     def access_db(self):
         
-        print self.db_path
+#        print self.db_path
     
         self.conn = sqlite3.connect(self.db_path)
         self.conn.text_factory = str  #retrieve DB strings in UTF-8 format? is this useful?
