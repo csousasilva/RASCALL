@@ -194,8 +194,9 @@ print count_exists, 'have a linelist'
 """
 
 #plot experimental data together with ATMOS data
-#molecule_code = "O"
-#print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
+#"""
+molecule_code = "BrCC=C"
+print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
 
 #print 'test1', molecules[molecule_code].functionals[2][0].averageSymmetries()
 #averageSymmetries = molecules[molecule_code].functionals[2][0].averageSymmetries()
@@ -206,21 +207,16 @@ print count_exists, 'have a linelist'
 #experimental_points = NIST_spectra.nist_spectrum(molecule_code)
 #plt.plot(experimental_points[0], experimental_points[1])
 
-#molecule_to_plot = molecules[molecule_code]
+molecule_to_plot = molecules[molecule_code]
 plotter = Plotter()
 
-#plotter.plot_molecule_band_centers(molecule_to_plot)
-#plotter.plot_NIST_spectrum(molecule_code)
+plotter.plot_molecule_band_centers(molecule_to_plot)
+plotter.plot_NIST_spectrum(molecule_code)
 #plotter.plot_ATMOS_crosssections(molecule_code)
-
-
-#plotter.show(molecule_code)
-
-
-#[H]OP([H])([!#1])=O
-#Functional for HCN, specifically for the ≡C-H bending and stretching motions, is '[H]C#C[!#1]'
-
+plotter.show(molecule_code)
 #"""
+
+"""
 #Code to plot all molecules with NIST spectra alongside ATMOS
 
 NIST_data = NIST_Smile_List()
@@ -244,5 +240,5 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
             molecules_wo_functionals_but_in_NIST.append(molecule_code)
 
 
-#"""
+"""
 
