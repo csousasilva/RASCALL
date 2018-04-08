@@ -41,7 +41,8 @@ class Plotter:
                         points.append((property.frequency_average(), property.intensity))
                         x = [property.frequency_average()]
                         y = [property.intensity]
-                        print functional.code, symmetry.type, int(property.frequency_average()),property.intensity, colours[i]
+                        print functional.code, symmetry.type, int(property.frequency_average()),\
+                            "{0:.2g}".format(property.intensity), colours[i]
 
                         if functional.source == 'ATMOS':
                             markerline, stemlines, baseline = plt.stem(x, y, '--')
@@ -82,7 +83,6 @@ class Plotter:
         #     plt.setp(baseline, color='r', linewidth=1, marker='None')
 
         # plt.xlim(1459,1459.5)
-        print 'Molecule below : ', molecule.code
 
 
         # Plot lines

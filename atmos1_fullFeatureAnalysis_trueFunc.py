@@ -32,9 +32,9 @@ with open('functionals_formatted.csv','rU') as f:
     functional_dictionary = functional_parser.functional_dictionary_for(functional_data)
 
 functional_to_check = functional_dictionary['[!#1]N(=O)=O']
-print 'functional_to_check', len(functional_to_check.symmetries)
+#print 'functional_to_check', len(functional_to_check.symmetries)
 
-print 'Functional dictionary sample', len(functional_dictionary)
+print 'Total number of unique functionals', len(functional_dictionary)
 
 # Load Molecules
 #Molecule dictionary sample [('C(C1)(C1F)(CC)', [('[H]C([H])(C)C', 2), ('[H]C([H])([!#1])[!#1]', 2),('[H]C([H])([H])C', 1), ('[H]C([H])([H])[!#1]', 1)]),...]
@@ -94,7 +94,7 @@ for molecule_code in molecules_with_triplebondCH:
 #        print molecule_code, 'no linelist '
 
 #print len(molecules_with_triplebondCH_and_spectra), 'molecules have a similar ≡C-H functional and spectra'
-print 'molecules with weak functional', molecules_with_triplebondCH_and_spectra
+#print 'molecules with weak functional', molecules_with_triplebondCH_and_spectra
 
 
 #co2 atmosphere
@@ -225,14 +225,24 @@ plotter = Plotter()
 
 NIST_data = NIST_Smile_List()
 NIST_Smiles = NIST_data[0]
+molecules_wo_functionals_but_in_NIST = []
 
+counter = 0
 for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
-      if molecule_code in NIST_Smiles:
-          print 'plotting', molecule_code
-          plotter.plot_molecule_band_centers(molecules[molecule_code])
-          plotter.plot_NIST_spectrum(molecule_code)
-          print 'Modes:', molecule_dictionary.get(molecule_code)
-          plotter.show(molecule_code)
+    if molecule_code in NIST_Smiles:
+        if len(molecule_dictionary.get(molecule_code)) >= 1:
+            print counter
+            print 'plotting', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code)
+            plotter.plot_molecule_band_centers(molecules[molecule_code])
+            plotter.plot_NIST_spectrum(molecule_code)
+            plotter.show(molecule_code)
+            counter = counter + 1
+        elif len(molecule_dictionary.get(molecule_code)) == 0:
+            print molecule_code, 'has no functionals'
+            plotter.plot_NIST_spectrum(molecule_code)
+            plotter.show(molecule_code)
+            molecules_wo_functionals_but_in_NIST.append(molecule_code)
+
 
 #"""
 
