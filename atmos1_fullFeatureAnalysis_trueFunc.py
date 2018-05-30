@@ -182,6 +182,8 @@ intensity = 3
 not_hydrocarbons = 0
 hydrocarbons = 0
 hydrocarbons_list = []
+hydrocarbons_in_NIST = []
+
 for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
     if any('O' in s for s in molecule_code) or any('P' in s for s in molecule_code) or any('N' in s for s in molecule_code) or any('S' in s for s in molecule_code) or any('F' in s for s in molecule_code) or any('I' in s for s in molecule_code) or any('B' in s for s in molecule_code) or any('l' in s for s in molecule_code):
         not_hydrocarbons = not_hydrocarbons + 1
@@ -189,7 +191,9 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
         #print (hydrocarbons + 1), molecule_code, ' with ', len(molecule_dictionary.get(molecule_code)), ' functionals'
         hydrocarbons_list.append(molecule_code)
         hydrocarbons = hydrocarbons + 1
-print len(hydrocarbons_list)
+        if molecule_code in plotables:
+            hydrocarbons_in_NIST.append(molecule_code)
+print len(hydrocarbons_list), len(hydrocarbons_in_NIST)
 
 
 
@@ -286,18 +290,16 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
 
 
 #Code to plot all hydrocarbon molecules with NIST spectra alongside ATMOS
-"""
+#"""
 plotter = Plotter()
 
 NIST_data = NIST_Smile_List()
 NIST_Smiles = NIST_data[0]
-hydrocarbons_list_in_NIST = []
 
 counter = 0
 for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
     if molecule_code in NIST_Smiles:
         if molecule_code in hydrocarbons_list:
-            hydrocarbons_list_in_NIST.append(molecule_code)
             if len(molecule_dictionary.get(molecule_code)) >= 1:
                 print counter
                 print 'plotting', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code)
@@ -309,5 +311,4 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
                 print molecule_code, 'has no functionals'
                 plotter.plot_NIST_spectrum(molecule_code)
                 plotter.show(molecule_code)
-print len(hydrocarbons_list_in_NIST)
-"""
+#"""
