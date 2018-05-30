@@ -26,7 +26,7 @@ import NIST_spectra
 # Example data
 # COC C-O-C sbend 2500 2720 weak
 # COC C-O-C abend 2800 2920 strong
-with open('functionals_formatted.csv','rU') as f:
+with open('functionals_formatted_eye_edit.csv','rU') as f:
     functional_data = f.readlines()
     functional_parser = Functional_Parser()
     functional_dictionary = functional_parser.functional_dictionary_for(functional_data)
@@ -178,6 +178,20 @@ intensity = 3
 
 #print 'List of Molecules', strong_window_molecules
 
+#Makes a list of all hydrocarbons
+not_hydrocarbons = 0
+hydrocarbons = 0
+hydrocarbons_list = []
+for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
+    if any('O' in s for s in molecule_code) or any('P' in s for s in molecule_code) or any('N' in s for s in molecule_code) or any('S' in s for s in molecule_code) or any('F' in s for s in molecule_code) or any('I' in s for s in molecule_code) or any('B' in s for s in molecule_code) or any('l' in s for s in molecule_code):
+        not_hydrocarbons = not_hydrocarbons + 1
+    else:
+        #print (hydrocarbons + 1), molecule_code, ' with ', len(molecule_dictionary.get(molecule_code)), ' functionals'
+        hydrocarbons_list.append(molecule_code)
+        hydrocarbons = hydrocarbons + 1
+print len(hydrocarbons_list)
+
+
 
 #looks through all of the plottable molecules and sees which exist in window
 count_exists = 0
@@ -194,8 +208,8 @@ print count_exists, 'have a linelist'
 """
 
 #plot experimental data together with ATMOS data
-#"""
-molecule_code = "BrCC=C"
+"""
+molecule_code = "CNCCNC"
 print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
 
 #print 'test1', molecules[molecule_code].functionals[2][0].averageSymmetries()
@@ -214,10 +228,11 @@ plotter.plot_molecule_band_centers(molecule_to_plot)
 plotter.plot_NIST_spectrum(molecule_code)
 #plotter.plot_ATMOS_crosssections(molecule_code)
 plotter.show(molecule_code)
-#"""
-
 """
+
 #Code to plot all molecules with NIST spectra alongside ATMOS
+"""
+plotter = Plotter()
 
 NIST_data = NIST_Smile_List()
 NIST_Smiles = NIST_data[0]
@@ -238,7 +253,61 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
             plotter.plot_NIST_spectrum(molecule_code)
             plotter.show(molecule_code)
             molecules_wo_functionals_but_in_NIST.append(molecule_code)
-
-
 """
 
+#Code to plot molecules with NIST spectra alongside ATMOS filtered by functional
+"""
+plotter = Plotter()
+functional_to_test = '[H]C([H])([!#1])[!#1]'
+print 'Functional to test: ', functional_to_test
+
+NIST_data = NIST_Smile_List()
+NIST_Smiles = NIST_data[0]
+molecules_wo_functionals_but_in_NIST = []
+
+counter = 0
+for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
+    if molecule_code in NIST_Smiles:
+        if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
+            print 'working'
+            if len(molecule_dictionary.get(molecule_code)) >= 1:
+                print counter
+                print 'plotting', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code)
+                plotter.plot_molecule_band_centers(molecules[molecule_code])
+                plotter.plot_NIST_spectrum(molecule_code)
+                plotter.show(molecule_code)
+                counter = counter + 1
+            elif len(molecule_dictionary.get(molecule_code)) == 0:
+                print molecule_code, 'has no functionals'
+                plotter.plot_NIST_spectrum(molecule_code)
+                plotter.show(molecule_code)
+                molecules_wo_functionals_but_in_NIST.append(molecule_code)
+"""
+
+
+#Code to plot all hydrocarbon molecules with NIST spectra alongside ATMOS
+"""
+plotter = Plotter()
+
+NIST_data = NIST_Smile_List()
+NIST_Smiles = NIST_data[0]
+hydrocarbons_list_in_NIST = []
+
+counter = 0
+for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
+    if molecule_code in NIST_Smiles:
+        if molecule_code in hydrocarbons_list:
+            hydrocarbons_list_in_NIST.append(molecule_code)
+            if len(molecule_dictionary.get(molecule_code)) >= 1:
+                print counter
+                print 'plotting', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code)
+                plotter.plot_molecule_band_centers(molecules[molecule_code])
+                plotter.plot_NIST_spectrum(molecule_code)
+                plotter.show(molecule_code)
+                counter = counter + 1
+            elif len(molecule_dictionary.get(molecule_code)) == 0:
+                print molecule_code, 'has no functionals'
+                plotter.plot_NIST_spectrum(molecule_code)
+                plotter.show(molecule_code)
+print len(hydrocarbons_list_in_NIST)
+"""

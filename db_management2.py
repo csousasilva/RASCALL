@@ -115,7 +115,7 @@ class database():
          
     def access_db(self):
         
-#        print self.db_path
+        print self.db_path
     
         self.conn = sqlite3.connect(self.db_path)
         self.conn.text_factory = str  #retrieve DB strings in UTF-8 format? is this useful?

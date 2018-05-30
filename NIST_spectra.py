@@ -20,9 +20,9 @@ import numpy as np
 def NIST_Smile_List(expect="all"):
     kwargs = {"db_name": "Molecule_DB.db",
               "user": "azariven",
-              "dir": "../../../SEAS/BioSig_SEAS/input/molecule_info",
+              "dir": "",
               "DEBUG": False, "REMOVE": False, "BACKUP": False, "OVERWRITE": False}
-
+    "../../../BiosigSeas2/BioSig_SEAS-master/input/molecule_info"
     cross_db = dbm.database(**kwargs)
     cross_db.access_db()
 
@@ -32,11 +32,16 @@ def NIST_Smile_List(expect="all"):
     result = cross_db.c.execute(cmd)
     data = np.array(result.fetchall()).T
 
+
+
+
     smiles = data[0]
     inchikeys = data[1]
     CAS = data[2]
     formula = data[3]
     name = data[4]
+
+
     if expect == "all":
         return smiles, inchikeys, CAS, formula, name
 
@@ -63,7 +68,11 @@ def nist_spectrum(molecule_smile):
 
     #Smiles = "CCCCC"
 
-    cas = CAS[list(NIST_Smiles).index(molecule_smile)]
+    if molecule_smile == "CSC":
+        cas = "C75183"
+    else:
+        cas = CAS[list(NIST_Smiles).index(molecule_smile)]
+
 
     nu, absorb = np.load("NIST_Spectra_Smile_Calibrated/%s.npy" % cas)
 

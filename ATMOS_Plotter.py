@@ -28,7 +28,7 @@ class Plotter:
         points = []
         colours = ['xkcd:turquoise', 'xkcd:hunter green', 'xkcd:crimson',\
                    'xkcd:ochre', 'xkcd:dusty rose', 'xkcd:medium blue',\
-                   'xkcd:greyish green', 'xkcd:wine red', 'xkcd:green brown', \
+                   'xkcd:greyish green', 'xkcd:dark peach', 'xkcd:green brown', \
                    'xkcd:dark orange', 'xkcd:scarlet', 'xkcd:emerald green', \
                    'xkcd:cobalt blue', 'xkcd:neon blue', 'xkcd:evergreen']
         i = 0
@@ -104,8 +104,11 @@ class Plotter:
         plt.plot(nu, xsec, label="ATMOS")
 
     def show(self, molecule_smile):
-        plt.xlabel('Wavenumbers')
-        plt.ylabel('Intensity')
-        plt.title(molecule_smile)
+        plt.xlabel('Wavenumbers (cm$^{-1}$)', fontsize=16)
+        plt.ylabel('Intensity', fontsize=16)
+        plt.xlim((0, 4500))
+        plt.title(molecule_smile, fontsize=16)
+        plt.tick_params(axis='both', which='major', labelsize=12)
+        plt.tick_params(axis='both', which='minor', labelsize=12)
         plt.show()
 

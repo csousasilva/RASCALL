@@ -108,7 +108,7 @@ def plot_NIST_transmission_spectra():
     
     print Smiles
     
-    Smiles = "CC"
+    Smiles = "CSC"
     
     nu, trans = load_NIST_spectra(Smiles,["wn","T"],is_smile=True,NIST_Spectra="NIST_Spectra")
     
