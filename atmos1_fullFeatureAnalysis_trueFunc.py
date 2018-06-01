@@ -184,6 +184,10 @@ hydrocarbons = 0
 hydrocarbons_list = []
 hydrocarbons_in_NIST = []
 
+halocarbons = 0
+halocarbons_list = []
+halocarbons_in_NIST = []
+
 for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
     if any('O' in s for s in molecule_code) or any('P' in s for s in molecule_code) or any('N' in s for s in molecule_code) or any('S' in s for s in molecule_code) or any('F' in s for s in molecule_code) or any('I' in s for s in molecule_code) or any('B' in s for s in molecule_code) or any('l' in s for s in molecule_code):
         not_hydrocarbons = not_hydrocarbons + 1
@@ -193,7 +197,19 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
         hydrocarbons = hydrocarbons + 1
         if molecule_code in plotables:
             hydrocarbons_in_NIST.append(molecule_code)
-print len(hydrocarbons_list), len(hydrocarbons_in_NIST)
+print 'Hydrocarbons:', len(hydrocarbons_list),'Hydrocarbons in NIST:', len(hydrocarbons_in_NIST)
+
+for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
+    if any('O' in s for s in molecule_code) or any('P' in s for s in molecule_code) or any('N' in s for s in molecule_code) or any('S' in s for s in molecule_code):
+        not_hydrocarbons = not_hydrocarbons + 1
+    elif any('F' in s for s in molecule_code) or any('I' in s for s in molecule_code) or any('B' in s for s in molecule_code) or any('l' in s for s in molecule_code):
+        #print (hydrocarbons + 1), molecule_code, ' with ', len(molecule_dictionary.get(molecule_code)), ' functionals'
+        halocarbons_list.append(molecule_code)
+        halocarbons = halocarbons + 1
+        if molecule_code in plotables:
+            halocarbons_in_NIST.append(molecule_code)
+print 'Halocarbons:', len(halocarbons_list),'Halocarbons in NIST:', len(halocarbons_in_NIST)
+#print 'Halocarbon list', halocarbons_in_NIST
 
 
 
@@ -212,8 +228,8 @@ print count_exists, 'have a linelist'
 """
 
 #plot experimental data together with ATMOS data
-"""
-molecule_code = "CNCCNC"
+#"""
+molecule_code = "CN"
 print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
 
 #print 'test1', molecules[molecule_code].functionals[2][0].averageSymmetries()
@@ -232,7 +248,7 @@ plotter.plot_molecule_band_centers(molecule_to_plot)
 plotter.plot_NIST_spectrum(molecule_code)
 #plotter.plot_ATMOS_crosssections(molecule_code)
 plotter.show(molecule_code)
-"""
+#"""
 
 #Code to plot all molecules with NIST spectra alongside ATMOS
 """
@@ -290,7 +306,7 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
 
 
 #Code to plot all hydrocarbon molecules with NIST spectra alongside ATMOS
-#"""
+"""
 plotter = Plotter()
 
 NIST_data = NIST_Smile_List()
@@ -311,4 +327,28 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
                 print molecule_code, 'has no functionals'
                 plotter.plot_NIST_spectrum(molecule_code)
                 plotter.show(molecule_code)
-#"""
+"""
+
+#Code to plot all halocarbon molecules with NIST spectra alongside ATMOS
+"""
+plotter = Plotter()
+
+NIST_data = NIST_Smile_List()
+NIST_Smiles = NIST_data[0]
+
+counter = 0
+for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
+    if molecule_code in NIST_Smiles:
+        if molecule_code in halocarbons_list:
+            if len(molecule_dictionary.get(molecule_code)) >= 1:
+                print counter
+                print 'plotting', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code)
+                plotter.plot_molecule_band_centers(molecules[molecule_code])
+                plotter.plot_NIST_spectrum(molecule_code)
+                plotter.show(molecule_code)
+                counter = counter + 1
+            elif len(molecule_dictionary.get(molecule_code)) == 0:
+                print molecule_code, 'has no functionals'
+                plotter.plot_NIST_spectrum(molecule_code)
+                plotter.show(molecule_code)
+"""
