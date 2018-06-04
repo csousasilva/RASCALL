@@ -24,3 +24,8 @@ class Molecule:
                         frequencies.append((float(property.low), float(property.high), float(property.intensity.value)))
 
         return frequencies
+
+
+
+
+
