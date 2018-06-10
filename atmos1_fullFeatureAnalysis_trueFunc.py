@@ -38,13 +38,13 @@ print 'Total number of unique functionals', len(functional_dictionary)
 
 # Load Molecules
 #Molecule dictionary sample [('C(C1)(C1F)(CC)', [('[H]C([H])(C)C', 2), ('[H]C([H])([!#1])[!#1]', 2),('[H]C([H])([H])C', 1), ('[H]C([H])([H])[!#1]', 1)]),...]
-molecule_file_name = "dict_funct_ATMOS_Jun2018.p"
+molecule_file_name = "dict_funct_ATMOS_Jun2018v2.p"
 molecule_dictionary = pickle.load(open(molecule_file_name, "rb"))
 molecule_parser = Molecule_Parser()
 molecules = molecule_parser.molecules_for(molecule_dictionary, functional_dictionary)
 
 
-print 'Molecule dictionary sample', molecule_dictionary.items()[:5]
+print 'Molecule dictionary size', len(molecule_dictionary.items()), 'with sample:', molecule_dictionary.items()[:5]
 #print 'Functionals for molecule C(C)NCC(O)', molecule_dictionary.get('C(C)NCC(O)')
 
 
@@ -129,26 +129,31 @@ hcn_regions= [(0.0,100.0),(600.0,820.0),(1340.0,1500.0),(3200.0,3400.0)]
 hcn_strong = [(0.0,100.0),(600.0,820.0)]
 hcn_strong_infrared = [(600.0,820.0)]
 
+# L, M, N, and Q atmospheric windows
+l_band = [(2710.0, 3115.3)]
+m_band = [(2008.0,2207.5)]
+n_band = [(851.1, 1081.1)]
+lmnq_windows = [(851.1, 1081.1),(2008.0,2207.5),(2710.0, 3115.3)]
+
 #test_window
 test_window = [(600,950),(1400,1500)]
 
 # print co2_windows[0][0] gives the first item of the first tuple (low freq of the first window)
 
 # Finds all the strong features whose average frequency is within a window
-atmosphere = methane2
+'''
+atmosphere = l_band
 intensity = 3
 
-#molecule_filter = Molecule_Filter(molecules)
-#filtered_molecules = molecule_filter.filter_for_region(atmosphere)
+molecule_filter = Molecule_Filter(molecules)
+filtered_molecules = molecule_filter.filter_for_region(atmosphere)
 
 
-#strength_filtered_molecules = molecule_filter.filter_for_region_and_intensity(atmosphere, intensity)
+strength_filtered_molecules = molecule_filter.filter_for_region_and_intensity(atmosphere, intensity)
 #print "our return", len(strength_filtered_molecules)
 
-
-
-#strong_window_molecules = filtered_molecules[1]
-
+strong_window_molecules = filtered_molecules[1]
+'''
 
 
                     
@@ -157,7 +162,7 @@ intensity = 3
 #                window_molecules.append(molecule.code)
 #                if point[1] >= 3:
                     
- #           window_filtered_list = list(filter(lambda x: ((window_low < low_frequency < window_high) and (window_low < high_frequency < window_high)), molecule.high_and_low_frequencies()))
+#            window_filtered_list = list(filter(lambda x: ((window_low < low_frequency < window_high) and (window_low < high_frequency < window_high)), molecule.high_and_low_frequencies()))
             #print molecule.high_and_low_frequencies()[0][0],molecule.high_and_low_frequencies()[0][1], molecule.average_points()[0][0]
 #    low_filtered_list = list(filter(lambda x: 600 < x[0] < 800, molecule.high_and_low_frequencies()[0]))
  
@@ -228,8 +233,8 @@ print count_exists, 'have a linelist'
 """
 
 #plot experimental data together with ATMOS data
-"""
-molecule_code = "CC#C"
+#"""
+molecule_code = "C#N"
 print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
 
 #print 'test1', molecules[molecule_code].functionals[2][0].averageSymmetries()
@@ -245,10 +250,11 @@ molecule_to_plot = molecules[molecule_code]
 plotter = Plotter()
 
 plotter.plot_molecule_band_centers(molecule_to_plot)
-plotter.plot_NIST_spectrum(molecule_code)
+#plotter.plot_NIST_spectrum(molecule_code)
+plotter.plot_ExoMol_spectrum(molecule_code)
 #plotter.plot_ATMOS_crosssections(molecule_code)
 plotter.show(molecule_code)
-"""
+#"""
 
 #Code to plot all molecules with NIST spectra alongside ATMOS
 """
@@ -276,17 +282,25 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
 """
 
 #Code to plot molecules with NIST spectra alongside ATMOS filtered by functional
-#"""
+"""
 plotter = Plotter()
-functional_to_test = '[H]C#[!#1]'
+functional_to_test = 'C#C'
 print 'Functional to test: ', functional_to_test
 
 NIST_data = NIST_Smile_List()
 NIST_Smiles = NIST_data[0]
 molecules_wo_functionals_but_in_NIST = []
-molecules_with_triplebondCH_and_CH = []
-
+molecules_with_test_fuctional = []
 counter = 0
+
+for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
+    if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
+        if len(molecule_dictionary.get(molecule_code)) >= 1:
+            molecules_with_test_fuctional.append(molecule_code)
+        elif len(molecule_dictionary.get(molecule_code)) == 0:
+            print molecule_code, 'has no functionals'
+print 'number of molecules_with_test_fuctional:', len(molecules_with_test_fuctional)
+
 for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
     if molecule_code in NIST_Smiles:
         if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
@@ -298,15 +312,14 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
                 plotter.plot_NIST_spectrum(molecule_code)
                 plotter.show(molecule_code)
                 counter = counter + 1
-                #molecules_with_triplebondCH_and_CH.append(molecule_code)
             elif len(molecule_dictionary.get(molecule_code)) == 0:
                 print molecule_code, 'has no functionals'
                 plotter.plot_NIST_spectrum(molecule_code)
                 plotter.show(molecule_code)
                 molecules_wo_functionals_but_in_NIST.append(molecule_code)
-#"""
 
-#print len(molecules_with_triplebondCH_and_CH), molecules_with_triplebondCH_and_CH
+"""
+
 
 #Code to plot all hydrocarbon molecules with NIST spectra alongside ATMOS
 """

@@ -1,3 +1,5 @@
+import numpy as np
+
 # INPUT
 # what region, e.g. a specific atmosphere
 # what molecules - e.g. all, Carbon-molecules
@@ -41,6 +43,8 @@ class Molecule_Filter:
 
                     if window_low < low_frequency < window_high and window_low < high_frequency < window_high:
                         window_molecules.append(molecule.code)
+
+
 
 
         print 'Window range: from ', region[0][0], ' to ', region[-1][1]

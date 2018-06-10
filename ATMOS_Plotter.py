@@ -92,8 +92,21 @@ class Plotter:
     def plot_NIST_spectrum(self, molecule_smile):
         Absorption_Boost = 3
         nu, coef = NIST_spectra.nist_spectrum(molecule_smile)
-
         plt.plot(nu, coef* Absorption_Boost)
+
+    def plot_ExoMol_spectrum(self, molecule_smile):
+        Absorption_Boost = 3
+        hcn_nu = []
+        hcn_coef = []
+        with open('hcn_exomol.dat', 'rU') as f:
+            hcn_exomol = f.readlines()
+            for line in hcn_exomol:
+                columns = line.strip().split()
+                hcn_nu.append(float(columns[0]))
+                hcn_coef.append(float(columns[1])*Absorption_Boost)
+#        print hcn_nu, hcn_coef
+        plt.plot(hcn_nu, hcn_coef)
+
 
 
     def plot_ATMOS_crosssections(self, molecule_smile):
