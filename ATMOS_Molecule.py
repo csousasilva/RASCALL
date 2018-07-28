@@ -16,7 +16,6 @@ class Molecule:
         functionalCodes = list(map(lambda functional: functional.code, functionals))
         return tripleBond in functionalCodes and chBond in functionalCodes
 
-
     def addFunctional(self, functional, number):
         self.functionals.append((functional, number))
 

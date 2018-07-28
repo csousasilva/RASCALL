@@ -44,7 +44,7 @@ molecule_parser = Molecule_Parser()
 molecules = molecule_parser.molecules_for(molecule_dictionary, functional_dictionary)
 
 
-print 'Molecule dictionary size', len(molecule_dictionary.items()), 'with sample:', molecule_dictionary.items()[:5]
+print 'Molecule dictionary size', len(molecule_dictionary.items()), 'with sample:', molecule_dictionary.items()[:8]
 #print 'Functionals for molecule C(C)NCC(O)', molecule_dictionary.get('C(C)NCC(O)')
 
 
@@ -233,13 +233,12 @@ print count_exists, 'have a linelist'
 """
 
 #plot experimental data together with ATMOS data
-#"""
-molecule_code = "C#N"
+"""
+molecule_code = "C#C"
 print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
 
 #print 'test1', molecules[molecule_code].functionals[2][0].averageSymmetries()
 #averageSymmetries = molecules[molecule_code].functionals[2][0].averageSymmetries()
-
 #for symmetry in averageSymmetries:
 #    print symmetry.type, symmetry.properties[0].low, symmetry.properties[0].high, symmetry.properties[0].intensity
 
@@ -250,11 +249,12 @@ molecule_to_plot = molecules[molecule_code]
 plotter = Plotter()
 
 plotter.plot_molecule_band_centers(molecule_to_plot)
-#plotter.plot_NIST_spectrum(molecule_code)
-plotter.plot_ExoMol_spectrum(molecule_code)
+plotter.plot_NIST_spectrum(molecule_code)
+#plotter.plot_ExoMol_spectrum('C#N')
 #plotter.plot_ATMOS_crosssections(molecule_code)
 plotter.show(molecule_code)
-#"""
+"""
+
 
 #Code to plot all molecules with NIST spectra alongside ATMOS
 """
@@ -282,15 +282,16 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
 """
 
 #Code to plot molecules with NIST spectra alongside ATMOS filtered by functional
-"""
+#"""
 plotter = Plotter()
-functional_to_test = 'C#C'
+functional_to_test = '[!#1]C#C[!#1]'
 print 'Functional to test: ', functional_to_test
 
 NIST_data = NIST_Smile_List()
 NIST_Smiles = NIST_data[0]
 molecules_wo_functionals_but_in_NIST = []
 molecules_with_test_fuctional = []
+molecules_with_test_fuctional_in_NIST = []
 counter = 0
 
 for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
@@ -299,7 +300,10 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
             molecules_with_test_fuctional.append(molecule_code)
         elif len(molecule_dictionary.get(molecule_code)) == 0:
             print molecule_code, 'has no functionals'
+        if molecule_code in NIST_Smiles:
+            molecules_with_test_fuctional_in_NIST.append(molecule_code)
 print 'number of molecules_with_test_fuctional:', len(molecules_with_test_fuctional)
+print 'number of molecules_with_test_fuctional in NIST:', len(molecules_with_test_fuctional_in_NIST)
 
 for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
     if molecule_code in NIST_Smiles:
@@ -318,7 +322,7 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
                 plotter.show(molecule_code)
                 molecules_wo_functionals_but_in_NIST.append(molecule_code)
 
-"""
+#"""
 
 
 #Code to plot all hydrocarbon molecules with NIST spectra alongside ATMOS
@@ -367,4 +371,16 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
                 print molecule_code, 'has no functionals'
                 plotter.plot_NIST_spectrum(molecule_code)
                 plotter.show(molecule_code)
+"""
+
+#plotting a few molecules with the tripleC-H bond
+"""
+plotter = Plotter()
+
+#plotter.plot_molecule_band_centers(molecule_to_plot)
+plotter.plot_NIST_spectrum('C#C')
+plotter.plot_ExoMol_spectrum('C#N')
+plotter.plot_NIST_spectrum('CC#C')
+#plotter.plot_NIST_spectrum('CCC#C')
+plotter.show(' ')
 """
