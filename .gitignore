@@ -13,6 +13,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+pythonenv/
 build/
 develop-eggs/
 dist/
@@ -33,6 +34,7 @@ wheels/
 #PyCharm Stuff
 .idea
 .git
+.idea/workspace.xml
 
 #Mac
 .DS_Store
