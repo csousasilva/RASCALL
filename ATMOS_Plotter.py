@@ -1,8 +1,9 @@
+
 import matplotlib
 matplotlib.use('TkAgg')
-#matplotlib.use('Qt4Agg')
 
 import matplotlib.pyplot as plt
+
 #import seaborn as sns
 import NIST_spectra
 import ATMOS_crosssections

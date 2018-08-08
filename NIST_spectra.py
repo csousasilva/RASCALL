@@ -13,7 +13,7 @@ from plot_NIST_transmission_spectra import load_NIST_spectra
 
 
 import jdx_Reader as jdx
-import matplotlib.pyplot as plt
+from ATMOS_Plotter import plt
 import numpy as np
 
 

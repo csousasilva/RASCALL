@@ -233,7 +233,7 @@ print count_exists, 'have a linelist'
 """
 
 #plot experimental data together with ATMOS data
-#"""
+"""
 molecule_code = "C#C"
 print molecule_code, ' with ', molecule_dictionary.get(molecule_code), ' functionals'
 
@@ -253,7 +253,7 @@ plotter.plot_NIST_spectrum(molecule_code)
 #plotter.plot_ExoMol_spectrum('C#N')
 #plotter.plot_ATMOS_crosssections(molecule_code)
 plotter.show(molecule_code)
-#"""
+"""
 
 
 #Code to plot all molecules with NIST spectra alongside ATMOS
@@ -282,9 +282,9 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
 """
 
 #Code to plot molecules with NIST spectra alongside ATMOS filtered by functional
-"""
+#"""
 plotter = Plotter()
-functional_to_test = '[!#1]C#C[!#1]'
+functional_to_test = 'C#N'
 print 'Functional to test: ', functional_to_test
 
 NIST_data = NIST_Smile_List()
@@ -322,7 +322,7 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
                 plotter.show(molecule_code)
                 molecules_wo_functionals_but_in_NIST.append(molecule_code)
 
-"""
+#"""
 
 
 #Code to plot all hydrocarbon molecules with NIST spectra alongside ATMOS
