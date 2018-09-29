@@ -1,0 +1,7 @@
+('CCl', 'stretch', 804, '3', 'ISAT')
+('CCl', 'stretch2', 700, '3', 'ISAT')
+('P[H]', 'stretch', 2360, '2', 'ir.pdf')
+('P[H]', 'bend', 1100, '1', 'ir.pdf')
+('P=O', 'stretch', 1150, '3', 'ir.pdf')
+('P=O', 'stretch3', 1245, '3', 'ir.pdf')
+('P=O', 'stretch2', 1237, '3', 'ir.pdf')

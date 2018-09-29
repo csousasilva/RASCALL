@@ -1,0 +1,5 @@
+('CCl', 'stretch', 804, '3', 'ISAT')
+('CCl', 'stretch2', 700, '3', 'ISAT')
+('C=C', 'stretch', 1653, '1', '05 IR chart/ATMOS')
+('CF', 'stretch', 1187, '3', '05 IR chart')
+('[!#1]C([!#1])=C([!#1])[!#1]', 'stretch', 1670, '1', 'ISAT')

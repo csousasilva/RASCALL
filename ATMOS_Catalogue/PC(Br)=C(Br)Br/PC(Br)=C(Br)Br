@@ -1,0 +1,5 @@
+('CBr', 'stretch', 596, '3', '05 IR chart')
+('C=C', 'stretch', 1653, '1', '05 IR chart/ATMOS')
+('[!#1]C([!#1])=C([!#1])[!#1]', 'stretch', 1670, '1', 'ISAT')
+('P[H]', 'stretch', 2360, '2', 'ir.pdf')
+('P[H]', 'bend', 1100, '1', 'ir.pdf')

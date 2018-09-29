@@ -1,0 +1,6 @@
+('C[H]', 'stretch', 2923, '2.8', 'spectables')
+('C[H]', 'bend2', 1457, '2.2', 'spectables')
+('C[H]', 'bend', 1367, '1.5', 'spectables')
+('C=C=O', 'stretch', 2150, '2', 'ISAT')
+('C=C=O', 'stretch2', 2185, '2', 'ISAT')
+('C=C', 'stretch', 1653, '1', '05 IR chart/ATMOS')

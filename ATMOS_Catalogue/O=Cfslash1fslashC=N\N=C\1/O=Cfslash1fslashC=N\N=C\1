@@ -1,0 +1,4 @@
+('C[H]', 'stretch', 2923, '2.8', 'spectables')
+('C[H]', 'bend2', 1457, '2.2', 'spectables')
+('C[H]', 'bend', 1367, '1.5', 'spectables')
+('CC(C)=O', 'stretch', 1719, '3', '05 IR chart')

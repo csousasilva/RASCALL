@@ -13,6 +13,7 @@ import cPickle as pickle
 from ATMOS_Functional_Parser import Functional_Parser
 from ATMOS_Molecule_Parser import Molecule_Parser
 from ATMOS_Plotter import Plotter
+from ATMOS_Catalogue import Catalogue
 from ATMOS_Molecule_Filter import Molecule_Filter
 
 from plot_NIST_transmission_spectra import NIST_Smile_List
@@ -288,7 +289,7 @@ for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
 
 #Code to plot molecules with NIST spectra alongside ATMOS filtered by functional
 #"""
-plotter = Plotter()
+plotter = Catalogue()
 functional_to_test = 'C#N'
 print 'Functional to test: ', functional_to_test
 
