@@ -1,0 +1,28 @@
+README file on the ATMOS Catalogue
+----------------------------------
+
+
+The folder “Molecular_Data” contains spectral information about 16,367 molecules. Within it there are subfolders with the name of each molecule in SMILE format [REF SMILE]. In each molecule’s folder there are two files, one containing the ATMOS skeleton spectra data (see below for details and units) and one with the functional group information of the molecule.
+
+Please be advised that the ATMOS catalogue of molecular spectra presented here is a preliminary database. Before using the  ATMOS data as molecular input for spectra simulations you are advised to contact the first author, Clara Sousa-Silva (cssilva@mit.edu), for technical support and clarification.
+
+Usage note: To avoid folder path issues, any molecule with a SMILE code containing a forward slash symbol (“/“) has been renamed to replace “/” with the string “fslash”, eg CH/[H]C/[Se] is CHfslash[H]Cfslash[Se].
+
+[SMILE}.txt
+===========
+File listing all functional groups identified in the molecule, as well as their associated properties and sources. All columns are separated by a comma and a single white space.
+
+Column 1: Functional group represented in SMILE notation, e.g. ‘[H]\\C([!#1])=C(/[H])[!#1]’
+Column 2: Specific symmetry type of the functional group, also known as the vibrational mode, e.g. ’stretch’
+Column 3: Average predicted position of the functional group symmetry, in units of wavenumbers (cm-1).
+Column 4: Qualitative intensities converted to numerical values ranging from 1 (representing a “weak” spectral feature) to 3 (representing a “weak” spectral feature).
+Column 5: Experimental, theoretical or literature source for the functional group information. Full citations can be found in the associated article.
+
+[SMILE}_ATMOS.txt
+=================
+
+File containing the estimated position and intensities of the molecule’s band centers. All columns are separated by a single white space.
+
+Column 1: Approximate position in units of wavenumbers (cm-1).
+Column 2: Qualitative intensities in values from 1 to 3 (see above).
+
