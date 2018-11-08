@@ -1,8 +1,0 @@
-('N=C=S', 'stretch', 2065, '3', 'ISAT')
-('C[H]', 'stretch', 2923, '2.8', 'spectables')
-('C[H]', 'bend2', 1457, '2.2', 'spectables')
-('C[H]', 'bend', 1367, '1.5', 'spectables')
-('[!#1]N=C=S', 'stretch', 2185, '2', 'ir.pdf')
-('C=C', 'stretch', 1653, '1', '05 IR chart/ATMOS')
-('CN', 'stretch', 1130, '2', 'ISAT')
-('C=C=C', 'stretch', 1950, '2', 'ISAT')

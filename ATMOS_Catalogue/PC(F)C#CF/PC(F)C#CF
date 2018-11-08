@@ -1,8 +1,0 @@
-('C[H]', 'stretch', 2923, '2.8', 'spectables')
-('C[H]', 'bend2', 1457, '2.2', 'spectables')
-('C[H]', 'bend', 1367, '1.5', 'spectables')
-('[!#1]C#C[!#1]', 'stretch', 2225, '1', 'ISAT/05 IR Chart')
-('CF', 'stretch', 1187, '3', '05 IR chart')
-('P[H]', 'stretch', 2360, '2', 'ir.pdf')
-('P[H]', 'bend', 1100, '1', 'ir.pdf')
-('C#C', 'stretch', 2175, '1.8', 'ir.pdf')
