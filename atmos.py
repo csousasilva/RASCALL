@@ -5,7 +5,7 @@ Plot a functional group, one plot per bond in the database.
 
 from argparse import ArgumentParser
 
-import ATMOS_Analysis
+from rascall import analysis
 
 if __name__ == '__main__':
     PARSER = ArgumentParser(description=__doc__)
@@ -13,4 +13,4 @@ if __name__ == '__main__':
 
     args = PARSER.parse_args()
 
-    ATMOS_Analysis.plot(args.fg)
+    analysis.plot(args.fg)
