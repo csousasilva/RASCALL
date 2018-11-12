@@ -10,6 +10,7 @@ from .molecule_parser import Molecule_Parser
 from .molecule_filter import Molecule_Filter
 from .plotter import Plotter
 from .catalogue import Catalogue
+from . import get_file
 
 from . import NIST_spectra
 
@@ -20,12 +21,12 @@ def get_functionals(filename='functionals_formatted_eye_edit.csv'):
     # Example data
     # COC C-O-C sbend 2500 2720 weak
     # COC C-O-C abend 2800 2920 strong
-    with open('functionals_formatted_eye_edit.csv', 'rU') as fhl:
+    with open(get_file('functionals.csv'), 'rU') as fhl:
         return Functional_Parser().functional_dictionary_for(fhl.readlines())
 
 #print 'Total number of unique functionals', len(functional_dictionary)
 
-def get_molecules(filename='dict_funct_ATMOS_Jun2018v2.p'):
+def get_molecules(filename=get_file('dictfunct.p')):
     # Load Molecules
     #Molecule dictionary sample [('C(C1)(C1F)(CC)', [('[H]C([H])(C)C', 2), ('[H]C([H])([!#1])[!#1]', 2),('[H]C([H])([H])C', 1), ('[H]C([H])([H])[!#1]', 1)]),...]
     return pickle.load(open(filename, "rb"))
@@ -98,7 +99,7 @@ def get_hydrocarbons(plotables, molecule_dictionary):
     hydrocarbons_list = []
     hydrocarbons_in_NIST = []
 
-    for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
+    for molecule_code, molecule_functionals in molecule_dictionary.items():
         if any('O' in s for s in molecule_code) or any('P' in s for s in molecule_code) or any('N' in s for s in molecule_code) or any('S' in s for s in molecule_code) or any('F' in s for s in molecule_code) or any('I' in s for s in molecule_code) or any('B' in s for s in molecule_code) or any('l' in s for s in molecule_code):
             not_hydrocarbons = not_hydrocarbons + 1
         else:
@@ -116,7 +117,7 @@ def get_halocarbons(plotables, molecule_dictionary):
     halocarbons_list = []
     halocarbons_in_NIST = []
 
-    for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
+    for molecule_code, molecule_functionals in molecule_dictionary.items():
         if any('O' in s for s in molecule_code) or any('P' in s for s in molecule_code) or any('N' in s for s in molecule_code) or any('S' in s for s in molecule_code):
             not_hydrocarbons = not_hydrocarbons + 1
         elif any('F' in s for s in molecule_code) or any('I' in s for s in molecule_code) or any('B' in s for s in molecule_code) or any('l' in s for s in molecule_code):
@@ -175,7 +176,7 @@ def plot(functional_to_test):
 '''
 
 def plot(functional_to_test):
-    """Code to plot all molecules with NIST spectra alongside ATMOS"""
+    """Code to plot all molecules with NIST spectra alongside RASCALL"""
     plotter = Catalogue()
     print ('Functional to test: ', functional_to_test)
 
@@ -189,7 +190,7 @@ def plot(functional_to_test):
     molecule_dictionary = get_molecules()
     molecules = Molecule_Parser().molecules_for(molecule_dictionary, functional_dictionary)
 
-    for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
+    for molecule_code, molecule_functionals in molecule_dictionary.items():
         if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
             if len(molecule_dictionary.get(molecule_code)) >= 1:
                 molecules_with_test_fuctional.append(molecule_code)
@@ -200,7 +201,7 @@ def plot(functional_to_test):
     print ('number of molecules_with_test_fuctional:', len(molecules_with_test_fuctional))
     print ('number of molecules_with_test_fuctional in NIST:', len(molecules_with_test_fuctional_in_NIST))
 
-    for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
+    for molecule_code, molecule_functionals in molecule_dictionary.items():
         if molecule_code in NIST_Smiles:
             print ('working')
             if len(molecule_dictionary.get(molecule_code)) >= 1:

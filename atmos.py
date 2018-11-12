@@ -5,7 +5,7 @@ Plot a functional group, one plot per bond in the database.
 
 from argparse import ArgumentParser
 
-from rascall import analysis
+from rascall import database
 
 if __name__ == '__main__':
     PARSER = ArgumentParser(description=__doc__)
@@ -13,4 +13,4 @@ if __name__ == '__main__':
 
     args = PARSER.parse_args()
 
-    analysis.plot(args.fg)
+    database.plot(args.fg)

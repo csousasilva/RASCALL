@@ -43,14 +43,14 @@ class Catalogue:
             molecule_code_string = molecule_code_string.replace('/', 'fslash')
             print (molecule_code_string)
 
-        molecule_folder = "/Users/clarasousasilva/Desktop/virtenv_hacking/ATMOS/ATMOS_Catalogue/{}".format(molecule_code_string)
+        molecule_folder = "/Users/clarasousasilva/Desktop/RASCALL_Catalogue/Molecular_Data/{}".format(molecule_code_string)
         if not os.path.exists(molecule_folder):
             os.makedirs(molecule_folder)
 
         filepath1 = os.path.join(molecule_folder, molecule_code_string)
         f = open(filepath1, 'w')
 
-        file_name = "{}_ATMOS".format(molecule_code_string)
+        file_name = "{}_RASCALL".format(molecule_code_string)
         filepath2 = os.path.join(molecule_folder, file_name)
         f2 = open(filepath2, 'w')
 
@@ -129,7 +129,7 @@ class Catalogue:
             molecule_code_string = molecule_code_string.replace('/', 'fslash')
             print (molecule_code_string)
 
-        molecule_folder = "/Users/clarasousasilva/Desktop/virtenv_hacking/ATMOS/ATMOS_Catalogue/{}".format(molecule_code_string)
+        molecule_folder = "/Users/clarasousasilva/Desktop/virtenv_hacking/ATMOS/RASCALL_Catalogue/{}".format(molecule_code_string)
         if not os.path.exists(molecule_folder):
             os.makedirs(molecule_folder)
 
@@ -152,7 +152,7 @@ class Catalogue:
         #plt.plot(nu, coef* Absorption_Boost)
 
     def plot_ExoMol_spectrum(self, molecule_smile):
-        molecule_folder = "/Users/clarasousasilva/Desktop/virtenv_hacking/ATMOS/ATMOS_Catalogue/{}".format(molecule_smile)
+        molecule_folder = "/Users/clarasousasilva/Desktop/virtenv_hacking/ATMOS/RASCALL_Catalogue/{}".format(molecule_smile)
         if not os.path.exists(molecule_folder):
             os.makedirs(molecule_folder)
 
@@ -180,7 +180,7 @@ class Catalogue:
     def plot_ATMOS_crosssections(self, molecule_smile):
 
         nu, xsec = ATMOS_crosssections.ATMOS_crosssection(molecule_smile)
-        plt.plot(nu, xsec, label="ATMOS")
+        plt.plot(nu, xsec, label="RASCALL")
 
     def show(self, molecule_smile):
         plt.xlabel('Wavenumbers (cm$^{-1}$)', fontsize=16)
@@ -236,7 +236,7 @@ class Catalogue:
             self.nextColor()
 
     def setupAppearance(self, functional, x, y):
-        if functional.source == 'ATMOS':
+        if functional.source == 'RASCALL':
             markerline, stemlines, baseline = plt.stem(x, y, '--')
         else:
             markerline, stemlines, baseline = plt.stem(x, y, '-')
