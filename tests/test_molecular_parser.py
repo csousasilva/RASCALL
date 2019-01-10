@@ -1,8 +1,11 @@
 import unittest
 import pickle as pickle
 from rascall.molecule_parser import Molecule_Parser
+from rascall.molecule import Molecule
+
 from rascall import get_file
 from rascall.functional_parser import Functional_Parser
+
 
 def get_functionals(filename='functionals_formatted_eye_edit.csv'):
     # Load Functionals
@@ -21,10 +24,12 @@ def get_molecules(filename=get_file('dictfunct.p')):
 
 class MolecularParserTest(unittest.TestCase):
     def test_parsing(self):
-        import rascall
         mpt = Molecule_Parser()
         functional_dictionary = get_functionals()
         molecule_dictionary = get_molecules()
         mpt.molecules_for(molecule_dictionary, functional_dictionary)
 
 
+ #   def test_equality(self):
+ #       self.assertEquals
+ #       self.assertR

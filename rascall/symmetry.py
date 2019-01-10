@@ -10,7 +10,6 @@ class Symmetry:
         self.properties.append(property)
         #print property.low, property.high, property.intensity.value
 
-
 class Property:
     def __init__(self, low, high, intensity, functional_class):
         self.low = low

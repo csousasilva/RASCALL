@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-ATMOS 1 - plotting the spectral features of individual functionals within molecules
+RASCALL 1 - plotting the spectral features of individual functionals within molecules
 """
 
 import pickle as pickle
+import re
 
 from .functional_parser import Functional_Parser
 from .molecule_parser import Molecule_Parser
@@ -99,7 +100,7 @@ def get_hydrocarbons(plotables, molecule_dictionary):
     hydrocarbons_list = []
     hydrocarbons_in_NIST = []
 
-    for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
+    for molecule_code, molecule_functionals in molecule_dictionary.items():
         if any('O' in s for s in molecule_code) or any('P' in s for s in molecule_code) or any('N' in s for s in molecule_code) or any('S' in s for s in molecule_code) or any('F' in s for s in molecule_code) or any('I' in s for s in molecule_code) or any('B' in s for s in molecule_code) or any('l' in s for s in molecule_code):
             not_hydrocarbons = not_hydrocarbons + 1
         else:
@@ -117,8 +118,9 @@ def get_halocarbons(plotables, molecule_dictionary):
     halocarbons_list = []
     halocarbons_in_NIST = []
 
-    for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
-        if any('O' in s for s in molecule_code) or any('P' in s for s in molecule_code) or any('N' in s for s in molecule_code) or any('S' in s for s in molecule_code):
+    for molecule_code, molecule_functionals in molecule_dictionary.items():
+        if any([e in molecule_code for e in 'OPNS']):
+#        if any('O' in s for s in molecule_code) or any('P' in s for s in molecule_code) or any('N' in s for s in molecule_code) or any('S' in s for s in molecule_code):
             not_hydrocarbons = not_hydrocarbons + 1
         elif any('F' in s for s in molecule_code) or any('I' in s for s in molecule_code) or any('B' in s for s in molecule_code) or any('l' in s for s in molecule_code):
             #print (hydrocarbons + 1), molecule_code, ' with ', len(molecule_dictionary.get(molecule_code)), ' functionals'
@@ -129,9 +131,25 @@ def get_halocarbons(plotables, molecule_dictionary):
     print ('Halocarbons:', len(halocarbons_list),'Halocarbons in NIST:', len(halocarbons_in_NIST))
     return halocarbons_in_NIST, not_hydrocarbons
 
+def filter_all(mol):
+    return True
+
+def filter_halo(mol):
+    return any([elem in mol for elem in ['Fl', 'I', 'B', 'Cl']]) \
+        and not any([elem in mol for elem in ['O', 'P', 'N', 'S']])
+
+LETTERS = re.compile(r'\w')
+def filter_hydro(mol):
+    return set(LETTERS.findall(mol)) == {'C'}
 
 
-def plot(functional_to_test):
+MOL_FILTERS = {
+    "all": filter_all,
+    "halo": filter_halo,
+    "hydro": filter_hydro,
+}
+
+def plot(functional_to_test, molecule_fam="all"):
     """Code to plot molecules with NIST spectra alongside ATMOS filtered by functional"""
     plotter = Plotter()
     print ('Functional to test: ', functional_to_test)
@@ -158,6 +176,10 @@ def plot(functional_to_test):
     print ('number of molecules_with_test_fuctional in NIST:', len(molecules_with_test_fuctional_in_NIST))
 
     for molecule_code, molecule_functionals in molecule_dictionary.items():
+        filtered = MOL_FILTERS[molecule_fam](molecule_code)
+        print(f"MF: {molecule_fam}, testing: {molecule_code}, ret: {filtered}")
+        if not filtered:
+            continue
         if molecule_code in NIST_Smiles:
             if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
                 print ('working')
