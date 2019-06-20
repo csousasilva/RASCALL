@@ -177,14 +177,14 @@ def plot(functional_to_test, molecule_fam="all"):
 
     for molecule_code, molecule_functionals in molecule_dictionary.items():
         filtered = MOL_FILTERS[molecule_fam](molecule_code)
-        print(f"MF: {molecule_fam}, testing: {molecule_code}, ret: {filtered}")
+        # print(f"MF: {molecule_fam}, testing: {molecule_code}, ret: {filtered}")
         if not filtered:
             continue
         if molecule_code in NIST_Smiles:
             if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
-                print ('working')
+                #print ('working')
                 if len(molecule_dictionary.get(molecule_code)) >= 1:
-                    print (counter)
+                    print ('Molecule', counter + 1)
                     print ('plotting', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code))
                     plotter.plot_molecule_band_centers(molecules[molecule_code])
                     plotter.plot_NIST_spectrum(molecule_code)
