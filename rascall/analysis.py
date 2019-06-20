@@ -184,7 +184,7 @@ def plot(functional_to_test, molecule_fam="all"):
             if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
                 #print ('working')
                 if len(molecule_dictionary.get(molecule_code)) >= 1:
-                    print ('Molecule', counter + 1)
+                    print ('Molecule', counter + 1, 'also in NIST')
                     print ('plotting', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code))
                     plotter.plot_molecule_band_centers(molecules[molecule_code])
                     plotter.plot_NIST_spectrum(molecule_code)
