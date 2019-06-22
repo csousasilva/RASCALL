@@ -41,7 +41,6 @@ class Catalogue:
 
         if '/' in molecule_code_string:
             molecule_code_string = molecule_code_string.replace('/', 'fslash')
-            print (molecule_code_string)
 
         molecule_folder = "/Users/clarasousasilva/Desktop/RASCALL_Catalogue/Molecular_Data/{}".format(molecule_code_string)
         if not os.path.exists(molecule_folder):
@@ -57,7 +56,6 @@ class Catalogue:
         if molecule.isHydrogenMuting:
             functionals =  list(map(lambda functionalTuple: functionalTuple[0], molecule.functionals))
             functionalCodes = list(map(lambda functional: functional.code, functionals))
-            print ("found hydrogen muting for molecule ", molecule.code, "with functionals ", functionalCodes)
             self.handleHydrogenMutingMolecule(molecule)
             return
 
@@ -225,9 +223,6 @@ class Catalogue:
                             y = [0.001]
                         else:
                             y = [property.intensity]
-                        print (functional.code, symmetry.type, int(property.frequency_average()), \
-                            "{0:.2g}".format(property.intensity), self.colours[self.colourIndex])
-
                         self.setupAppearance(functional, x, y)
 
                     elif property.low == 'UNK':

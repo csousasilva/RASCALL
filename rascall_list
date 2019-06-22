@@ -12,7 +12,7 @@ if __name__ == '__main__':
 
     PARSER.add_argument("--fg", nargs="?", help="List Molecules with Functional Group", default="[!#1]C#C[!#1]")
 
-    PARSER.add_argument("--mol", nargs="?", help="List Functional Groups if Molecule", default=None)
+    PARSER.add_argument("--mol", nargs="?", help="List Functional Groups in Molecule", default=None)
 
     PARSER.add_argument("--mf", nargs="?", help="List Molecules in Family", default="all", choices=["halo","hydro","all"])
 
