@@ -10,7 +10,7 @@ from rascall import database
 if __name__ == '__main__':
     PARSER = ArgumentParser(description=__doc__)
 
-    PARSER.add_argument("--fg", nargs="?", help="List Molecules with Functional Group", default="all")
+    PARSER.add_argument("--fg", nargs="?", help="List Molecules with Functional Group", default=None)
 
     PARSER.add_argument("--mol", nargs="?", help="List Functional Groups in Molecule", default=None)
 

@@ -207,25 +207,26 @@ def plot(functional_to_test="all", molecule_fam="all"):
     molecule_dictionary = get_molecules()
     molecules = Molecule_Parser().molecules_for(molecule_dictionary, functional_dictionary)
 
-    if functional_to_test == "database":
+    if functional_to_test == "all" or functional_to_test == "database":
         # Just set molecules_with_test_fuctional to be all molecules
         molecules_with_test_fuctional = list(molecule_dictionary.keys())
         # Just set molecules_with_test_fuctional_in_NIST return all molecules in NIST
         molecules_with_test_fuctional_in_NIST = NIST_Smiles
 
-        # Iterate over all molecules...
-        for molecule_code in molecules_with_test_fuctional:
-            # ... and only create database entries for molecules with functionals, because
-            # currently (June 22, 2019) Catalogue can't handle molecules with no functionals.
-            if len(molecule_dictionary.get(molecule_code)) > 0:
-                # Just print every 100 iterations so we can track progress without too much noise in the terminal.
-                if counter % 100 == 0: print(counter)
-                counter = counter + 1
-                plotter.plot_molecule_band_centers(molecules[molecule_code])
-            else:
-                print (molecule_code, 'has no functionals')
-        # Stop running this function altogether after handling all molecules.
-        return
+        if functional_to_test == "database":
+            # Iterate over all molecules...
+            for molecule_code in molecules_with_test_fuctional:
+                # ... and only create database entries for molecules with functionals, because
+                # currently (June 22, 2019) Catalogue can't handle molecules with no functionals.
+                if len(molecule_dictionary.get(molecule_code)) > 0:
+                    # Just print every 100 iterations so we can track progress without too much noise in the terminal.
+                    if counter % 100 == 0: print(counter)
+                    counter = counter + 1
+                    plotter.plot_molecule_band_centers(molecules[molecule_code])
+                else:
+                    print (molecule_code, 'has no functionals')
+            # Stop running this function altogether after handling all molecules.
+            return
     else:
         for molecule_code, molecule_functionals in molecule_dictionary.items():
             if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
@@ -235,6 +236,7 @@ def plot(functional_to_test="all", molecule_fam="all"):
                     print (molecule_code, 'has no functionals')
                 if molecule_code in NIST_Smiles:
                     molecules_with_test_fuctional_in_NIST.append(molecule_code)
+
     print ('Number of molecules_with_test_fuctional:', len(molecules_with_test_fuctional))
     #print ('Molecule codes:', molecules_with_test_fuctional)
     print ('Number of molecules_with_test_fuctional in NIST:', len(molecules_with_test_fuctional_in_NIST))
