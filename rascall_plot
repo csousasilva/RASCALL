@@ -12,9 +12,11 @@ if __name__ == '__main__':
 
     PARSER.add_argument("--fg", nargs="?", help="Functional Group to Plot", default="[!#1]C#C[!#1]")
 
+    PARSER.add_argument("--mol", nargs="?", help="List Functional Groups in Molecule", default=None)
+
     PARSER.add_argument("--mf", nargs="?", help="Molecular Family to Plot", default="all", choices=["halo","hydro","all"])
 
-    PARSER.add_argument("--fw", nargs="?", help="Frequency window to Plot", default=None)
+    PARSER.add_argument("--fw", nargs="?", help="Frequency Window to Plot", default=None)
 
     PARSER.add_argument("--ap", nargs="?", help="Molecules with specific atoms to Plot", default=None)
 

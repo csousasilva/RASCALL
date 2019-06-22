@@ -10,13 +10,15 @@ from rascall import database
 if __name__ == '__main__':
     PARSER = ArgumentParser(description=__doc__)
 
-    PARSER.add_argument("--fg", nargs="?", help="Functional Group to Plot", default="[!#1]C#C[!#1]")
+    PARSER.add_argument("--fg", nargs="?", help="List Molecules with Functional Group", default="[!#1]C#C[!#1]")
 
-    PARSER.add_argument("--mf", nargs="?", help="Molecular Family to Plot", default="all", choices=["halo","hydro","all"])
+    PARSER.add_argument("--mol", nargs="?", help="List Functional Groups if Molecule", default=None)
 
-    PARSER.add_argument("--fw", nargs="?", help="Frequency window to Plot", default=None)
+    PARSER.add_argument("--mf", nargs="?", help="List Molecules in Family", default="all", choices=["halo","hydro","all"])
 
-    PARSER.add_argument("--ap", nargs="?", help="Molecules with specific atoms to Plot", default=None)
+    PARSER.add_argument("--fw", nargs="?", help="Molecules in Frequency Window", default=None)
+
+    PARSER.add_argument("--ap", nargs="?", help="List Molecules with Specific Atoms", default=None)
 
     args = PARSER.parse_args()
 
