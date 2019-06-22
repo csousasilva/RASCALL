@@ -205,12 +205,13 @@ def plot(functional_to_test="all", molecule_fam="all"):
     counter = 0
     functional_dictionary = get_functionals()
     molecule_dictionary = get_molecules()
+    all_molecule_codes = list(molecule_dictionary.keys())
     molecules = Molecule_Parser().molecules_for(molecule_dictionary, functional_dictionary)
 
     # Handle `functional_to_test` argument
     if functional_to_test == "all" or functional_to_test == "database":
         # Just set molecules_with_test_fuctional to be all molecules
-        molecules_with_test_fuctional = list(molecule_dictionary.keys())
+        molecules_with_test_fuctional = all_molecule_codes
         # Just set molecules_with_test_fuctional_in_NIST return all molecules in NIST
         molecules_with_test_fuctional_in_NIST = NIST_Smiles
         print ('Number of molecules in RASCALL:', len(molecules_with_test_fuctional))
@@ -246,34 +247,16 @@ def plot(functional_to_test="all", molecule_fam="all"):
         # print ('Molecule codes:', molecules_with_test_fuctional)
         print ('Number of molecules_with_test_fuctional in NIST:', len(molecules_with_test_fuctional_in_NIST))
         # print ('Molecule codes in NIST:', molecules_with_test_fuctional_in_NIST)
-    
+
     # Handle `molecule_fam` argument
-    for molecule_code in molecules_with_test_fuctional:
+    molecules_in_family = []
+    for molecule_code in all_molecule_codes:
         filtered = MOL_FILTERS[molecule_fam](molecule_code)
         # print(f"MF: {molecule_fam}, testing: {molecule_code}, ret: {filtered}")
         if not filtered:
             continue
-        if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
-            if len(molecule_dictionary.get(molecule_code)) >= 1:
-                # Uncomment the next two lines to print molecules along with their functional data
-                # print ('Molecule', counter + 1)
-                # print (molecule_code, 'with functionals', molecule_dictionary.get(molecule_code))
-                #plotter.plot_molecule_band_centers(molecules[molecule_code])
-            #plotter.plot_NIST_spectrum(molecule_code)
-            #plotter.show(molecule_code)
-                counter = counter + 1
-            elif len(molecule_dictionary.get(molecule_code)) == 0:
-                print (molecule_code, 'has no functionals')
-            #plotter.plot_NIST_spectrum(molecule_code)
-            #plotter.show(molecule_code)
-                molecules_wo_functionals_but_in_NIST.append(molecule_code)
-        elif molecule_code not in NIST_Smiles:
-            if len(molecule_dictionary.get(molecule_code)) >= 1:
-                # print (counter)
-                # print ('Molecule not in NIST:', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code))
-                #plotter.plot_molecule_band_centers(molecules[molecule_code])
-            #plotter.plot_NIST_spectrum(molecule_code)
-            #plotter.show(molecule_code)
-                counter = counter + 1
+        else:
+            molecules_in_family.append(molecule_code)
 
+    print("Number of molecules in family ", molecule_fam, ": ", len(molecules_in_family))
 
