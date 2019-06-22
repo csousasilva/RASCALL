@@ -192,7 +192,7 @@ def plot(functional_to_test):
                     molecules_wo_functionals_but_in_NIST.append(molecule_code)
 '''
 
-def plot(functional_to_test, molecule_fam="all"):
+def plot(functional_to_test="all", molecule_fam="all"):
     """Code to plot all molecules with NIST spectra alongside RASCALL"""
     plotter = Catalogue()
     print ('Functional to test: ', functional_to_test)
@@ -207,18 +207,24 @@ def plot(functional_to_test, molecule_fam="all"):
     molecule_dictionary = get_molecules()
     molecules = Molecule_Parser().molecules_for(molecule_dictionary, functional_dictionary)
 
-    for molecule_code, molecule_functionals in molecule_dictionary.items():
-        if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
-            if len(molecule_dictionary.get(molecule_code)) >= 1:
-                molecules_with_test_fuctional.append(molecule_code)
-            elif len(molecule_dictionary.get(molecule_code)) == 0:
-                print (molecule_code, 'has no functionals')
-            if molecule_code in NIST_Smiles:
-                molecules_with_test_fuctional_in_NIST.append(molecule_code)
-    print ('Mumber of molecules_with_test_fuctional:', len(molecules_with_test_fuctional))
+    if functional_to_test == "all":
+        # Just return all molecules
+        molecules_with_test_fuctional = list(molecule_dictionary.keys())
+        # Just return all molecules in NIST
+        molecules_with_test_fuctional_in_NIST = NIST_Smiles
+    else:
+        for molecule_code, molecule_functionals in molecule_dictionary.items():
+            if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
+                if len(molecule_dictionary.get(molecule_code)) >= 1:
+                    molecules_with_test_fuctional.append(molecule_code)
+                else:
+                    print (molecule_code, 'has no functionals')
+                if molecule_code in NIST_Smiles:
+                    molecules_with_test_fuctional_in_NIST.append(molecule_code)
+    print ('Number of molecules_with_test_fuctional:', len(molecules_with_test_fuctional))
     print ('Molecule codes:', molecules_with_test_fuctional)
     print ('Number of molecules_with_test_fuctional in NIST:', len(molecules_with_test_fuctional_in_NIST))
-    print ('Molecule codes:', molecules_with_test_fuctional_in_NIST)
+    print ('Molecule codes in NIST:', molecules_with_test_fuctional_in_NIST)
 
     for molecule_code, molecule_functionals in molecule_dictionary.items():
         filtered = MOL_FILTERS[molecule_fam](molecule_code)
@@ -229,8 +235,9 @@ def plot(functional_to_test, molecule_fam="all"):
             if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
                 #print ('working')
                 if len(molecule_dictionary.get(molecule_code)) >= 1:
-                    print ('Molecule', counter + 1)
-                    print (molecule_code, 'with functionals', molecule_dictionary.get(molecule_code))
+                    # Uncomment the next two lines to print molecules along with their functional data
+                    # print ('Molecule', counter + 1)
+                    # print (molecule_code, 'with functionals', molecule_dictionary.get(molecule_code))
                     plotter.plot_molecule_band_centers(molecules[molecule_code])
                 #plotter.plot_NIST_spectrum(molecule_code)
                 #plotter.show(molecule_code)
@@ -243,7 +250,7 @@ def plot(functional_to_test, molecule_fam="all"):
             elif molecule_code not in NIST_Smiles:
                 if len(molecule_dictionary.get(molecule_code)) >= 1:
                     print (counter)
-                    print ('plotting', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code))
+                    print ('Molecule not in NIST:', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code))
                     plotter.plot_molecule_band_centers(molecules[molecule_code])
                 #plotter.plot_NIST_spectrum(molecule_code)
                 #plotter.show(molecule_code)
