@@ -156,8 +156,8 @@ def plot(functional_to_test):
     NIST_data = NIST_Smile_List()
     NIST_Smiles = NIST_data[0]
     molecules_wo_functionals_but_in_NIST = []
-    molecules_with_test_fuctional = []
-    molecules_with_test_fuctional_in_NIST = []
+    molecules_with_test_functional = []
+    molecules_with_test_functional_in_NIST = []
     counter = 0
     functional_dictionary = get_functionals()
     molecule_dictionary = get_molecules()
@@ -166,13 +166,13 @@ def plot(functional_to_test):
     for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
         if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
             if len(molecule_dictionary.get(molecule_code)) >= 1:
-                molecules_with_test_fuctional.append(molecule_code)
+                molecules_with_test_functional.append(molecule_code)
             elif len(molecule_dictionary.get(molecule_code)) == 0:
                 print molecule_code, 'has no functionals'
             if molecule_code in NIST_Smiles:
-                molecules_with_test_fuctional_in_NIST.append(molecule_code)
-    print 'number of molecules_with_test_fuctional:', len(molecules_with_test_fuctional)
-    print 'number of molecules_with_test_fuctional in NIST:', len(molecules_with_test_fuctional_in_NIST)
+                molecules_with_test_functional_in_NIST.append(molecule_code)
+    print 'number of molecules_with_test_functional:', len(molecules_with_test_functional)
+    print 'number of molecules_with_test_functional in NIST:', len(molecules_with_test_functional_in_NIST)
 
     for molecule_code, molecule_functionals in molecule_dictionary.iteritems():
         if molecule_code in NIST_Smiles:
@@ -200,8 +200,8 @@ def plot(functional_to_test="all", molecule_fam="all", single_molecule_to_search
     NIST_data = NIST_Smile_List()
     NIST_Smiles = NIST_data[0]
     molecules_wo_functionals_but_in_NIST = []
-    molecules_with_test_fuctional = []
-    molecules_with_test_fuctional_in_NIST = []
+    molecules_with_test_functional = []
+    molecules_with_test_functional_in_NIST = []
     counter = 0
     functional_dictionary = get_functionals()
     molecule_dictionary = get_molecules()
@@ -219,18 +219,18 @@ def plot(functional_to_test="all", molecule_fam="all", single_molecule_to_search
 
     # Handle `functional_to_test` argument
     if functional_to_test == "all" or functional_to_test == "database":
-        # Just set molecules_with_test_fuctional to be all molecules
-        molecules_with_test_fuctional = all_molecule_codes
-        # Just set molecules_with_test_fuctional_in_NIST return all molecules in NIST
-        molecules_with_test_fuctional_in_NIST = NIST_Smiles
-        print ('Number of molecules in RASCALL:', len(molecules_with_test_fuctional))
-        # print ('Molecule codes:', molecules_with_test_fuctional)
-        print ('Number of molecules in NIST:', len(molecules_with_test_fuctional_in_NIST))
-        # print ('Molecule codes in NIST:', molecules_with_test_fuctional_in_NIST)
+        # Just set molecules_with_test_functional to be all molecules
+        molecules_with_test_functional = all_molecule_codes
+        # Just set molecules_with_test_functional_in_NIST return all molecules in NIST
+        molecules_with_test_functional_in_NIST = NIST_Smiles
+        print ('Number of molecules in RASCALL:', len(molecules_with_test_functional))
+        # print ('Molecule codes:', molecules_with_test_functional)
+        print ('Number of molecules in NIST:', len(molecules_with_test_functional_in_NIST))
+        # print ('Molecule codes in NIST:', molecules_with_test_functional_in_NIST)
 
         if functional_to_test == "database":
             # Iterate over all molecules...
-            for molecule_code in molecules_with_test_fuctional:
+            for molecule_code in molecules_with_test_functional:
                 counter = counter + 1
                 # ... and only create database entries for molecules with functionals, because
                 # currently (June 22, 2019) Catalogue can't handle molecules with no functionals.
@@ -247,16 +247,16 @@ def plot(functional_to_test="all", molecule_fam="all", single_molecule_to_search
         for molecule_code, molecule_functionals in molecule_dictionary.items():
             if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
                 if len(molecule_dictionary.get(molecule_code)) > 0:
-                    molecules_with_test_fuctional.append(molecule_code)
+                    molecules_with_test_functional.append(molecule_code)
                 else:
                     print (molecule_code, 'has no functionals')
                 if molecule_code in NIST_Smiles:
-                    molecules_with_test_fuctional_in_NIST.append(molecule_code)
+                    molecules_with_test_functional_in_NIST.append(molecule_code)
 
-        print ('Number of molecules_with_test_fuctional:', len(molecules_with_test_fuctional))
-        # print ('Molecule codes:', molecules_with_test_fuctional)
-        print ('Number of molecules_with_test_fuctional in NIST:', len(molecules_with_test_fuctional_in_NIST))
-        # print ('Molecule codes in NIST:', molecules_with_test_fuctional_in_NIST)
+        print ('Number of molecules_with_test_functional:', len(molecules_with_test_functional))
+        # print ('Molecule codes:', molecules_with_test_functional)
+        print ('Number of molecules_with_test_functional in NIST:', len(molecules_with_test_functional_in_NIST))
+        # print ('Molecule codes in NIST:', molecules_with_test_functional_in_NIST)
         
         # Stop executing function before it begins evaluating molecule families.
         return

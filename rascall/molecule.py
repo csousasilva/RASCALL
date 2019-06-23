@@ -55,7 +55,7 @@ class Molecule:
 
         return frequencies
 
-         # __repr__ is what defines the description of an object when it is printed.
+    # __repr__ is what defines the description of an object when it is printed.
     def __repr__(self):
         if len(self.functionals) == 0:
             return "Molecule %s has no reported functionals yet." % (self.code)
