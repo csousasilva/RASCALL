@@ -55,6 +55,20 @@ class Molecule:
 
         return frequencies
 
+    # __repr__ is what defines the description of an object when it is printed.
+    def __repr__(self):
+        if len(self.functionals) == 0:
+            return "Molecule %s has no reported functionals yet." % (self.code)
+
+        all_functional_codes = list(map(lambda tuple: tuple[0].code, self.functionals))
+        all_functional_occurrences = list(map(lambda tuple: tuple[1], self.functionals))
+        codes_paired_to_their_occurrences = list(zip(all_functional_codes, all_functional_occurrences))
+
+        all_functional_descriptions = list(map(lambda tuple: str(tuple[0]), self.functionals))
+        all_functional_descriptions = "\n".join(all_functional_descriptions)
+        return "Molecule %s with functionals %s \n %s" % (self.code, codes_paired_to_their_occurrences, all_functional_descriptions)
+
+    __str__ = __repr__
 
 
 

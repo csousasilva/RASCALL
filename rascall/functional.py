@@ -58,6 +58,28 @@ class Functional:
 
         return averageSymmetries
 
+    # __repr__ is what defines the description of an object when it is printed.
+    def __repr__(self):
+        property_descriptions = []
+        for symmetry in self.averageSymmetries():
+            for property in symmetry.properties:
+                if property.low != 'UNK':
+                    functional_string = (self.code, symmetry.type, int(property.frequency_average()),\
+                            "{0:.2g}".format(property.intensity), self.source)
+                    functional_string = str(functional_string)
+                    property_descriptions.append(functional_string)
+                elif property.low == 'UNK':
+                    functional_string = (self.code, "unknown properties")
+                    functional_string = str(functional_string)
+                    property_descriptions.append(functional_string)
+
+        property_descriptions = '\n'.join(property_descriptions)
+        property_descriptions_string = str(property_descriptions)
+        return property_descriptions_string
+
+    __str__ = __repr__
+
+
 
 
 
