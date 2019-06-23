@@ -192,7 +192,7 @@ def plot(functional_to_test):
                     molecules_wo_functionals_but_in_NIST.append(molecule_code)
 '''
 
-def plot(functional_to_test="all", molecule_fam="all"):
+def plot(functional_to_test="all", molecule_fam="all", single_molecule_to_search_for=None):
     """Code to plot all molecules with NIST spectra alongside RASCALL"""
     plotter = Catalogue()
     print ('Functional to test: ', functional_to_test)
@@ -207,6 +207,15 @@ def plot(functional_to_test="all", molecule_fam="all"):
     molecule_dictionary = get_molecules()
     all_molecule_codes = list(molecule_dictionary.keys())
     molecules = Molecule_Parser().molecules_for(molecule_dictionary, functional_dictionary)
+
+    # Handle `single_molecule_to_search_for` argument:
+    if single_molecule_to_search_for != None:
+        mol = molecules[single_molecule_to_search_for]
+        # `Molecule` defines its own description, so we don't need to be so verbose with this print statement.
+        # (See: `Molecule.__repr__`)
+        print(mol)
+        # Stop executing the rest of this function once we print the desired molecule.
+        return
 
     # Handle `functional_to_test` argument
     if functional_to_test == "all" or functional_to_test == "database":
@@ -231,8 +240,9 @@ def plot(functional_to_test="all", molecule_fam="all"):
                     plotter.plot_molecule_band_centers(molecules[molecule_code])
                 else:
                     print (molecule_code, 'has no functionals')
+            
             # Stop running this function altogether after handling all molecules.
-            return
+        return
     elif functional_to_test != None:
         for molecule_code, molecule_functionals in molecule_dictionary.items():
             if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
@@ -247,9 +257,13 @@ def plot(functional_to_test="all", molecule_fam="all"):
         # print ('Molecule codes:', molecules_with_test_fuctional)
         print ('Number of molecules_with_test_fuctional in NIST:', len(molecules_with_test_fuctional_in_NIST))
         # print ('Molecule codes in NIST:', molecules_with_test_fuctional_in_NIST)
-
+        
+        # Stop executing function before it begins evaluating molecule families.
+        return
+   
     # Handle `molecule_fam` argument
     molecules_in_family = []
+    molecules_in_family_contained_in_NIST = []
     for molecule_code in all_molecule_codes:
         filtered = MOL_FILTERS[molecule_fam](molecule_code)
         # print(f"MF: {molecule_fam}, testing: {molecule_code}, ret: {filtered}")
@@ -257,6 +271,9 @@ def plot(functional_to_test="all", molecule_fam="all"):
             continue
         else:
             molecules_in_family.append(molecule_code)
+            if molecule_code in NIST_Smiles:
+                molecules_in_family_contained_in_NIST.append(molecule_code)
 
-    print("Number of molecules in family ", molecule_fam, ": ", len(molecules_in_family))
+    print("Number of RASCALL molecules in family ", molecule_fam, ": ", len(molecules_in_family))
+    print("Number of NIST molecules in family ", molecule_fam, ": ", len(molecules_in_family_contained_in_NIST))
 
