@@ -10,7 +10,8 @@ from rascall import analysis
 if __name__ == '__main__':
     PARSER = ArgumentParser(description=__doc__)
 
-    PARSER.add_argument("--fg", nargs="?", help="Plot Molecules with Functional Group", default="[!#1]C#C[!#1]")
+    #eg test functional: "[!#1]C#C[!#1]"
+    PARSER.add_argument("--fg", nargs="?", help="Plot Molecules with Functional Group", default=None)
 
     PARSER.add_argument("--mol", nargs="?", help="Plot Single Molecule", default=None)
 
