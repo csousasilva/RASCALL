@@ -163,6 +163,11 @@ def plot(functional_to_test, molecule_fam="all"):
     functional_dictionary = get_functionals()
     molecule_dictionary = get_molecules()
     molecules = Molecule_Parser().molecules_for(molecule_dictionary, functional_dictionary)
+    print ('Total Number of Molecules in the RASCALL Database: ',len(molecules))
+
+    if functional_to_test == "all" or functional_to_test == "database":
+        print ('Trust me, you do not want to plot EVERY molecule in the RASCALL database')
+        return
 
     for molecule_code, molecule_functionals in molecule_dictionary.items():
         if any(functional_to_test in s for s in molecule_dictionary.get(molecule_code)):
