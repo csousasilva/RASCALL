@@ -20,5 +20,7 @@ class Molecule_Parser:
                 else:                        missing_functional_codes.add(functional_code)
 
             molecules[molecule_code] = molecule
-        print ("These functionals are missing from the table:", list(missing_functional_codes))
+            
+        if len(list(missing_functional_codes)) > 0:
+            print ("These functionals are missing from the table:", list(missing_functional_codes))
         return molecules
