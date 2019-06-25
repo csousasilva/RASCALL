@@ -253,6 +253,10 @@ def plot(functional_to_test="all", molecule_fam="all", single_molecule_to_search
                 if molecule_code in NIST_Smiles:
                     molecules_with_test_functional_in_NIST.append(molecule_code)
 
+        if len(molecules_with_test_functional) == 0:
+            print ('Requested functional group', functional_to_test, 'not in database')
+            return
+
         print ('Number of molecules_with_test_functional:', len(molecules_with_test_functional))
         # print ('Molecule codes:', molecules_with_test_functional)
         print ('Number of molecules_with_test_functional in NIST:', len(molecules_with_test_functional_in_NIST))

@@ -149,7 +149,7 @@ MOL_FILTERS = {
     "hydro": filter_hydro,
 }
 
-def plot(functional_to_test, molecule_fam="all"):
+def plot(functional_to_test, molecule_fam="all", single_molecule_to_search_for=None):
     """Code to plot molecules with NIST spectra alongside ATMOS filtered by functional"""
     plotter = Plotter()
     print ('Functional to test: ', functional_to_test)
@@ -166,6 +166,28 @@ def plot(functional_to_test, molecule_fam="all"):
     molecules = Molecule_Parser().molecules_for(molecule_dictionary, functional_dictionary)
     print ('Total Number of Molecules in the RASCALL Database: ',len(molecules))
 
+    # Handle `single_molecule_to_search_for` argument:
+    if single_molecule_to_search_for != None:
+        molecule_code = single_molecule_to_search_for
+        if molecule_code in NIST_Smiles:
+            if len(molecule_dictionary.get(molecule_code)) > 0:
+                print ('Molecule', molecule_code, 'also in NIST')
+                print ('plotting', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code))
+                plotter.plot_molecule_band_centers(molecules[molecule_code])
+                plotter.plot_NIST_spectrum(molecule_code)
+                plotter.show(molecule_code)
+            elif len(molecule_dictionary.get(molecule_code)) == 0:
+                print (molecule_code, 'has no functionals')
+                plotter.plot_NIST_spectrum(molecule_code)
+                plotter.show(molecule_code)
+                molecules_wo_functionals_but_in_NIST.append(molecule_code)
+        else:
+            print ('Molecule', molecule_code, 'not in NIST')
+            print ('plotting', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code))
+            plotter.plot_molecule_band_centers(molecules[molecule_code])
+        # Stop executing the rest of this function once we print the desired molecule.
+        return
+
     # Handle `functional_to_test` argument
     if functional_to_test == "all" or functional_to_test == "database":
         print ('Trust me, you do not want to plot EVERY molecule in the RASCALL database')
@@ -181,6 +203,9 @@ def plot(functional_to_test, molecule_fam="all"):
                     print (molecule_code, 'has no functionals')
                 if molecule_code in NIST_Smiles:
                     molecules_with_test_functional_in_NIST.append(molecule_code)
+        if len(molecules_with_test_functional) == 0:
+            print ('Requested functional group', functional_to_test, 'not in database')
+            return
 
         print ('Number of molecules_with_test_functional:', len(molecules_with_test_functional))
         # print ('Molecule codes:', molecules_with_test_functional)
@@ -238,4 +263,6 @@ def plot(functional_to_test, molecule_fam="all"):
                 counter = counter + 1
     # Don't try and plot anything else
     return
+
+
 
