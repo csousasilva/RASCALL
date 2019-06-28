@@ -13,12 +13,15 @@ if __name__ == '__main__':
     #eg test functional: "[!#1]C#C[!#1]"
     PARSER.add_argument("--fg", nargs="?", help="Plot Molecules with Functional Group", default=None)
 
+    #eg try 'CN(CC)C'
     PARSER.add_argument("--mol", nargs="?", help="Plot Single Molecule", default=None)
 
     PARSER.add_argument("--mf", nargs="?", help="Plot Molecular Family", default="all", choices=["halo","hydro","all"])
 
+    #Terminal arguments for frequency windows/intensity filtering are currently under development, 
+    #but this functionality can be accessed within the molecule_filter.py module
     PARSER.add_argument("--fw", nargs="?", help="Molecules in Frequency Window", default=None)
-
+    #Terminal arguments for specific atoms are currently under development
     PARSER.add_argument("--ap", nargs="?", help="Plot Molecules with Specific Atoms", default=None)
 
     args = PARSER.parse_args()

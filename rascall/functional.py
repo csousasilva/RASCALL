@@ -26,7 +26,7 @@ class Functional:
         symmetry.addProperty(property)
 
         self.addSymmetry(symmetry)
-        #print (self.code, self.symmetries)
+        # (self.code, self.symmetries)
 
     def addSymmetry(self, symmetry):
         self.symmetries.append(symmetry)
