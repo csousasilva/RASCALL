@@ -1,10 +1,40 @@
-README file on the RASCALL Catalogue
+README file on the RASCALL 1.0 Catalogue
 ----------------------------------
 
+The RASCALL 1.0 Catalogue contains the RASCALL 1.0 functional group table, the RASCALL 1.0 molecular dictionary, and the RASCALL 1.0 database. The database is generated from the RASCALL 1.0 code (Sousa-Silva 2019, github.com/csousasilva/RASCALL)
 
-The folder “Molecular_Data” contains spectral information about 16,367 molecules. Within it there are subfolders with the name of each molecule in SMILE format [REF SMILE]. In each molecule’s folder there are two files, one containing the RASCALL skeleton spectra data (see below for details and units) and one with the functional group information of the molecule.
 
-Please be advised that the RASCALL catalogue of molecular spectra presented here is a preliminary database. Before using the  RASCALL data as molecular input for spectra simulations you are advised to contact the first author, Clara Sousa-Silva (cssilva@mit.edu), for technical support and clarification.
+
+functional_group_table.csv
+===========
+This file is the raw form of the functional group table. Each row corresponds to a functional group mode, with the following columns:
+Column 1: functional group code (FG SMILES), in SMILES format (Weininger 1988).
+Column 2: vibrational mode (FG Sym)
+Columns 3-4: frequency range (Freq low, Freq high)
+Column 5-6: qualitative and quantitative band intensities (IntQual, IntQuant)
+Column 7: band shape (e.g.  broad, sharp)
+Column 8: source (literature,  experimental  data, ATMOS, or  RASCALL)
+Column 9: functional  group type (principal, general or associate)
+Column 10: functional group class (e.g. associated with the C=O bond)
+Column 11: molecular family (e.g., Alcohols,  Aldehydes).
+
+
+Note that not all functional groups modes have been assigned. Integers after "a/stretch" and "a/bend" symmetries are placeholder labels that may correspond to hot or combination bands, as well as torsional, rocking, scissoring, or wagging motions.
+
+molecular_dictionary.p
+===========
+The molecular dictionary is provided in a Python serialization data format (pickle), where each molecule is described as a python dictionary key (represented with a SMILE code) with its value as a list of tuples containing the functional group code (also in SMILE notation) and incidence number of each identified functional group, n(FGi).
+
+Molecule dictionary sample line:
+[('C(C1)(C1F)(CC)', [('[H]C([H])(C)C', 2), ('[H]C([H])([!#1])[!#1]', 2),('[H]C([H])([H])C', 1), ('[H]C([H])([H])[!#1]', 1)]),...]
+
+
+
+Molecular_Data
+===========
+The folder “Molecular_Data” contains spectral information about 16,367 molecules (there are 16,418 entries but 51 molecules do not yet have any assigned functional groups). Within it there are subfolders with the name of each molecule in SMILE format. In each molecule’s folder there are two files, one containing the RASCALL skeleton spectra data (see below for details and units) and one with the functional group information of the molecule.
+
+Please be advised that the RASCALL catalogue of molecular spectra presented here is a preliminary database. Before using the  RASCALL data as molecular input for spectral simulations you are advised to contact the first author, Clara Sousa-Silva (cssilva@mit.edu), for technical support and clarification.
 
 Usage note: To avoid folder path issues, any molecule with a SMILE code containing a forward slash symbol (“/“) has been renamed to replace “/” with the string “fslash”, eg CH/[H]C/[Se] is CHfslash[H]Cfslash[Se].
 
@@ -25,4 +55,10 @@ File containing the estimated position and intensities of the molecule’s band 
 
 Column 1: Approximate position in units of wavenumbers (cm-1).
 Column 2: Qualitative intensities in values from 1 to 3 (see above).
+
+-------------------------------------------------------------------------------
+
+Sousa-Silva, Petkowski, and Seager, "Molecular Simulations for the Spectroscopic Detection of Atmospheric Gases", PCCP, 2019
+
+Weininger, "SMILES, a chemical language and information system. 1. Introduction to methodology and encoding rules." Journal of chemical information and computer sciences 28.1 (1988): 31-36.
 

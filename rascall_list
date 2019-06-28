@@ -10,14 +10,18 @@ from rascall import database
 if __name__ == '__main__':
     PARSER = ArgumentParser(description=__doc__)
 
+    #eg test functional: "[!#1]C#C[!#1]"
     PARSER.add_argument("--fg", nargs="?", help="List Molecules with Functional Group", default=None)
 
+    #eg, try 'CN(CC)C'
     PARSER.add_argument("--mol", nargs="?", help="List Functional Groups in Molecule", default=None)
 
     PARSER.add_argument("--mf", nargs="?", help="List Molecules in Family", default="all", choices=["halo","hydro","all"])
 
+    #Terminal arguments for frequency windows/intensity filtering are currently under development, 
+    #but this functionality can be accessed within the molecule_filter.py module
     PARSER.add_argument("--fw", nargs="?", help="Molecules in Frequency Window", default=None)
-
+    #Terminal arguments for specific atoms are currently under development
     PARSER.add_argument("--ap", nargs="?", help="List Molecules with Specific Atoms", default=None)
 
     args = PARSER.parse_args()

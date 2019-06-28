@@ -182,9 +182,11 @@ def plot(functional_to_test, molecule_fam="all", single_molecule_to_search_for=N
                 plotter.show(molecule_code)
                 molecules_wo_functionals_but_in_NIST.append(molecule_code)
         else:
-            print ('Molecule', molecule_code, 'not in NIST')
-            print ('plotting', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code))
             plotter.plot_molecule_band_centers(molecules[molecule_code])
+            print ('Molecule', molecule_code, 'not in any other databases')
+            print ('plotting', molecule_code, 'with functionals', molecule_dictionary.get(molecule_code))
+            plotter.show(molecule_code)
+            
         # Stop executing the rest of this function once we print the desired molecule.
         return
 
