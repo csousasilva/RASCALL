@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
     PARSER.add_argument("--mf", nargs="?", help="Plot Molecular Family", default="all", choices=["halo","hydro","all"])
 
-    #Terminal arguments for frequency windows/intensity filtering are currently under development, 
+    #Terminal arguments for frequency windows/intensity filtering are currently under development,
     #but this functionality can be accessed within the molecule_filter.py module
     PARSER.add_argument("--fw", nargs="?", help="Molecules in Frequency Window", default=None)
     #Terminal arguments for specific atoms are currently under development
