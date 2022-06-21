@@ -3,7 +3,7 @@ cycler==0.10.0
 enum34==1.1.6
 kiwisolver==1.0.1
 matplotlib==2.2.2
-numpy==1.15.0
+numpy==1.22.0
 pyparsing==2.2.0
 Pypubsub==4.0.0
 python-dateutil==2.7.3
