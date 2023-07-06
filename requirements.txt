@@ -8,7 +8,7 @@ pyparsing==2.2.0
 Pypubsub==4.0.0
 python-dateutil==2.7.3
 pytz==2018.5
-scipy==1.1.0
+scipy==1.10.0
 six==1.11.0
 subprocess32==3.5.2
 typing==3.6.4
